@@ -30,11 +30,11 @@ export default function Chat() {
   return (
     <section className='text-zinc-700'>
       <div className="container flex h-screen flex-col items-center justify-center">
-        <h1 className="font-serif text-2x1 font-medium">AI Chatbot</h1>
+        <h1 className="font-serif text-2x1 font-medium">Text Generation</h1>
         <div className="mt-4 w-full max-w-lg">
           {/* response container */}
           <div
-            className=' h-[500px] whitespace-nowrap rounded-md border overflow-auto p-4'
+            className=' h-[300px] whitespace-nowrap rounded-md border overflow-auto p-4'
             ref={ref}
           >
             {messages.map(m => (
