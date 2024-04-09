@@ -20,6 +20,30 @@ export default function Speech() {
     setIsLoading(true);
   }
 
+  const fetchDataFromApi = async () => {
+    try {
+      setIsLoading(true)
+      const response = await fetch("/api/testendpoint", {
+        headers: {
+          Accept: "application/json",
+          method: "GET",
+        }
+      });
+
+      if (response) {
+        const data = await response.json();
+        console.log("DATA", data)
+      }
+
+    } catch (error) {
+      console.log(error)
+
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+
   return (
     <section className='text-zinc-700'>
       <div className="container flex h-screen flex-col items-center justify-center">
@@ -28,7 +52,7 @@ export default function Speech() {
           {/* response container */}
 
 
-
+<Button onClick={fetchDataFromApi}>Click for data</Button>
           {/* input form */}
           <form onSubmit={handleSubmit} className='relative'>
               <Input
