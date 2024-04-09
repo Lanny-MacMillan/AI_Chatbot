@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { Input, Button } from '@/components/ui'
 import { useChat } from 'ai/react';
 // import { ScrollArea } from '@/components/ui/scroll-area'
 import CopyToClipboard from '@/components/copy-to-clipboard'
