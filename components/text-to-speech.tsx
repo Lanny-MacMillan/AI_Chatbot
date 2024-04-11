@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-
+import toast from "react-hot-toast";
 import { Input, Button } from '@/components/ui'
 import { SendHorizontalIcon } from 'lucide-react'
 
@@ -11,6 +11,7 @@ export default function Speech() {
   const [input, setInput] = useState<String>('');
   const [isLoading, setIsLoading] = useState<Boolean>(false);
 
+  console.log("INPUT", input)
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setInput(newValue)
@@ -23,20 +24,21 @@ export default function Speech() {
   const fetchDataFromApi = async () => {
     try {
       setIsLoading(true)
-      const response = await fetch("/api/speech", {
-        headers: {
-          Accept: "application/json",
-          method: "GET",
-        }
-      });
 
-      if (response) {
-        const data = response;
-        console.log("response", data)
-      }
+      const response = await fetch("/api/textToSpeech", {
+        body: JSON.stringify(input),
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+
+      console.log("RESPONSE", response)
+      
 
     } catch (error) {
-      console.log(error)
+      console.error(error);
 
     } finally {
       setIsLoading(false)
@@ -52,12 +54,10 @@ export default function Speech() {
           {/* response container */}
 
 
-<Button onClick={fetchDataFromApi}>Click for data</Button>
           {/* input form */}
-          <form onSubmit={handleSubmit} className='relative'>
+          <form onSubmit={fetchDataFromApi} className='relative'>
               <Input
                 name='message'
-                // value={input}
                 onChange={onChange}
                 placeholder='What would you like me to say?...'
                 className='pr-12 placeholder:italic placeholder:text-zinc-600/75 focus-visible:ring-zinc-500'
@@ -71,7 +71,8 @@ export default function Speech() {
               >
                 <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
               </Button>
-            </form>
+          </form>
+        
         </div>
 
       </div>
@@ -79,7 +80,3 @@ export default function Speech() {
   )
 
 }
-
-// function setIsLoading(arg0: boolean) {
-//   throw new Error('Function not implemented.');
-// }
