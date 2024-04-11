@@ -23,7 +23,7 @@ export default function Speech() {
   const fetchDataFromApi = async () => {
     try {
       setIsLoading(true)
-      const response = await fetch("/api/testendpoint", {
+      const response = await fetch("/api/speech", {
         headers: {
           Accept: "application/json",
           method: "GET",
@@ -31,8 +31,8 @@ export default function Speech() {
       });
 
       if (response) {
-        const data = await response.json();
-        console.log("DATA", data)
+        const data = response;
+        console.log("response", data)
       }
 
     } catch (error) {
