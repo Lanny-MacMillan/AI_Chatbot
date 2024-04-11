@@ -28,12 +28,14 @@ export default function Chat() {
 
   return (
     <section className='text-zinc-700'>
-      <div className="container flex h-screen flex-col items-center justify-center">
-        <h1 className="font-serif text-2x1 font-medium">Text Generation</h1>
+      <div className="container flex h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffffff] to-[#141c3a]">
+        <h1 className="text-2xl font-bold text-gray-600">
+            Text Generation
+        </h1>
         <div className="mt-4 w-full max-w-lg">
           {/* response container */}
           <div
-            className=' h-[300px] whitespace-nowrap rounded-md border overflow-auto p-4'
+            className=' h-[300px] whitespace-nowrap rounded-md border overflow-auto p-4 bg-[#ffffff]'
             ref={ref}
           >
             {messages.map(m => (
