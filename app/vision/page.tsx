@@ -82,60 +82,68 @@ export default function Vision() {
     <NavigationMenuAi/>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffffff] to-[#141c3a]">
 
-      {/* Card */}
       <div
-        className="bg-white rounded-lg p-6 text-center flex flex-col justify-between"
-        style={{ height: "600px" }}
+        className="bg-transparent rounded-lg p-6 text-center flex flex-col justify-between"
+        style={{ height: "500px" }}
       >
       <div className="flex flex-col items-center">
       <div className="flex flex-row justify-center items-center">
         {/* <Image
           className="w-[40px] h-[50px] mr-3"
-          src="/images/tinder-logo.png"
+          src="/images/logo.png"
           height={50}
           width={40}
-          alt={"Tinder logo"}
+          alt={"Missing"}
         /> */}
-        <h1 className="text-3xl font-bold text-gray-600">
+        <h1 className="text-2xl font-bold text-gray-600">
           Vision Ai
         </h1>
       </div>
-      <h2 className="text-xl mt-2 font-semibold text-gray-500">
+      <h2 className="text-l mt-2 font-semibold text-gray-500">
         Upload your images and get insights from Ai!
       </h2>
-    </div>
-
-        <label className="cursor-pointer">
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 mt-4">
-            <p className="text-lg text-gray-600">Upload Images</p>
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleImageChange}
-              className="hidden"
-              disabled={isLoading}
-            />
           </div>
-        </label>
-
-        <PicturePreview images={images} />
-
-        <div>
-          <button
-            onClick={() => void assessImages()}
-            className="bg-gradient-to-r from-[#FD297B] to-[#FF655B] text-white rounded-md px-4 py-3 text-xl mt-4 disabled:opacity-50"
-            disabled={isLoading || images.length === 0}
-          >
-            {isLoading ? "Generating..." : "Assess"}
-          </button>
-          {images.length === 0 && (
-            <p className="text-xs text-gray-500 mt-2">
-              You need to upload an image to use Vision
-            </p>
-          )}
+          
+          <PicturePreview images={images} />
+            
+          <div className="flex flex-col items-center justify-between ">
+            {images.length === 0 ? (
+              <>
+                <label className="cursor-pointer">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 mt-2  w-64">
+                    <p className="text-lg text-gray-300">Upload Images</p>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handleImageChange}
+                        className="hidden"
+                        disabled={isLoading}
+                    />
+                    
+                  </div>                  
+                </label>
+                  {images.length === 0 && (
+                      <p className="text-xs text-gray-500 mt-2">
+                        You need to upload an image to use Vision
+                      </p>
+                    )}
+              </>
+            ) : (
+                <>
+                  <div>
+                    <button
+                      onClick={() => void assessImages()}
+                      className="border-2 border-dashed border-gray-300 rounded-lg p-4 mt-2  w-64 text-gray-300"
+                      disabled={isLoading || images.length === 0}
+                    >
+                      {isLoading ? "Generating..." : "Assess"}
+                    </button>
+                  </div>
+                      </>
+                  )}
+          </div>
         </div>
-      </div>
       </main>
       </>
 
