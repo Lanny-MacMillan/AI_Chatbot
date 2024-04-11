@@ -66,7 +66,7 @@ export default async function handler(
     // Generate speech from the AI message
     const visionMP3 = await openai.audio.speech.create({
       model: "tts-1",
-      voice: "shimmer",
+      voice: "alloy",
       input: aiMessage,
       response_format: "mp3",
     });
