@@ -10,28 +10,30 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    console.log("speech_req", req.body)
-    // // Initialize OpenAI client
-    // const openai = new OpenAI();
+    console.log("speech_req:", req.body)
     const message = req.body;
 
-    // console.log("Generating audio...");
-    // // Generate speech from the AI message
-    // const speech = await openai.audio.speech.create({
-    //   model: "tts-1",
-    //   voice: "alloy",
-    //   input: message,
-    //   response_format: "mp3",
-    // });
+    // // Initialize OpenAI client
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || '' });
 
-    // console.log("Finished generating audio");
+    console.log("Generating audio...");
 
-    // // Convert response to buffer and send as MP3 file
-    // const speechMP3Buffer = Buffer.from(await speech.arrayBuffer());
-    // res.setHeader("Content-Type", "audio/mpeg");
-    // res.setHeader("Content-Disposition", 'attachment; filename="text-to-speech.mp3"');
-    // res.status(200).send(speechMP3Buffer);
-    res.status(200).send(message);
+    // Generate speech from the AI message
+    const speech = await openai.audio.speech.create({
+      model: "tts-1",
+      voice: "alloy",
+      input: message,
+      response_format: "mp3",
+    });
+
+    console.log("Finished generating audio: ", {speech});
+
+    // Convert response to buffer and send as MP3 file
+    const speechMP3Buffer = Buffer.from(await speech.arrayBuffer());
+    res.setHeader("Content-Type", "audio/mpeg");
+    res.setHeader("Content-Disposition", 'attachment; filename="text-to-speech.mp3"');
+    res.status(200).send(speechMP3Buffer);
+    // res.status(200).send(message);
 
   } catch (error) {
     // Error handling
