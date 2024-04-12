@@ -11,8 +11,10 @@ export default function Speech() {
   const [audio, setAudio] = useState<any>('');
   const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [download, setDownlaod] = useState<Boolean>(false);
+  // pass in voices to be chosen by user
+  // option to play mp3 or download it
+  // pass in Ai model to be used
 
-  // const playFile = useRef<HTMLInputElement>(null)
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
