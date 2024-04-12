@@ -4,12 +4,16 @@ import { Input, Button } from '@/components/ui'
 import { useChat } from 'ai/react';
 // import { ScrollArea } from '@/components/ui/scroll-area'
 import CopyToClipboard from '@/components/copy-to-clipboard'
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { SendHorizontalIcon } from 'lucide-react'
 
 export default function Chat() {
   const ref = useRef<HTMLDivElement>(null)
+  // option to have chat spoken by Ai or text
+  //  -pass in voices to be chosen by user if Ai spoken
+  // pass in Ai model to be used
+
+
   const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
     initialMessages: [
       {

@@ -8,9 +8,10 @@ export default function Vision() {
   const [audio, setAudio] = useState<any>('');
   const [isLoading, setisLoading] = useState(false);
   // pass in voices to be chosen by user
-  // pass in different text strings for user to choose
-  // add input field for custom text for vision to assess
+  // pass in different text strings for user to choose - silly roast,
+  // add input field for custom text for vision to assess users specific needs
   // option to play mp3 or download it
+  // pass in Ai model to be used
 
 
   // Handles changes in the image input field
