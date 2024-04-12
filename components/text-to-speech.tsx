@@ -1,22 +1,24 @@
 'use client'
-
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import toast from "react-hot-toast";
 import { Input, Button } from '@/components/ui'
 import { SendHorizontalIcon } from 'lucide-react'
-import { FormEvent } from "react";
+
 
 export default function Speech() {
   // alloy, echo, fable, onyx, nova, and shimmer
   const [input, setInput] = useState<String>('');
+  const [audio, setAudio] = useState<any>('');
   const [isLoading, setIsLoading] = useState<Boolean>(false);
+  const [download, setDownlaod] = useState<Boolean>(false);
 
-  console.log("INPUT", {input})
+  // const playFile = useRef<HTMLInputElement>(null)
+
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setInput(newValue)
   }
-  
+
 
 
   const handleSubmit = async (e: any) => {
@@ -41,19 +43,22 @@ export default function Speech() {
 
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.setAttribute("download", "vision.mp3");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      setAudio(downloadUrl);
+      
+      // creates file to downlaod
+      // const link = document.createElement("a");
+      // link.href = downloadUrl;
+      // link.setAttribute("download", "vision.mp3");
+      // document.body.appendChild(link);
+      // link.click();
+      // document.body.removeChild(link);
       
 
     } catch (error) {
       console.error(error);
 
     } finally {
-      // setIsLoading(false)
+      setIsLoading(false)
     }
   }
 
@@ -65,6 +70,7 @@ export default function Speech() {
         <div className="mt-4 w-full max-w-lg">
           {/* response container */}
 
+          <audio autoPlay src={audio}></audio>
 
           {/* input form */}
           <form onSubmit={handleSubmit} className='relative'>

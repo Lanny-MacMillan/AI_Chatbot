@@ -5,6 +5,7 @@ import PicturePreview from "@/components/ui/PicturePreview";
 
 export default function Vision() {
   const [images, setImages] = useState<File[]>([]);
+  const [audio, setAudio] = useState<any>('');
   const [isLoading, setisLoading] = useState(false);
   // pass in voices to be chosen by user
   // pass in different text strings for user to choose
@@ -59,12 +60,15 @@ export default function Vision() {
 
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = downloadUrl;
-      link.setAttribute("download", "vision.mp3");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      setAudio(downloadUrl);
+
+
+      // const link = document.createElement("a");
+      // link.href = downloadUrl;
+      // link.setAttribute("download", "vision.mp3");
+      // document.body.appendChild(link);
+      // link.click();
+      // document.body.removeChild(link);
 
     } catch (error) {
 
@@ -87,7 +91,9 @@ export default function Vision() {
         style={{ height: "500px" }}
       >
       <div className="flex flex-col items-center">
-      <div className="flex flex-row justify-center items-center">
+        <div className="flex flex-row justify-center items-center">
+          <audio autoPlay src={audio}></audio>
+              
         {/* <Image
           className="w-[40px] h-[50px] mr-3"
           src="/images/logo.png"
