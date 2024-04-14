@@ -1,8 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { ChatCompletionContentPart } from "openai/resources/index.mjs";
-import data from '@/data.json'
 
 // The API handler function
 export default async function handler(
