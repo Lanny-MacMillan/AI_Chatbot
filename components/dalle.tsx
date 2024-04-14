@@ -12,7 +12,6 @@ export default function Dalle3() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
-console.log("dalleResult", dalleResult)
   const handleDalleSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -22,16 +21,20 @@ console.log("dalleResult", dalleResult)
         body: JSON.stringify(prompt),
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': "application/json"
         },
       });
       
       // Error handling for unsuccessful response
-      if (!response.ok) throw new Error("Error generating audio");
+      if (!response.ok) throw new Error("Error generating Image");
+
+      const imageURL = await response.json();
 
       // Notify success and trigger file download
       toast.success("Image generated successfully!");
-      setDalleResult(response);
+
+      console.log("IMAGEURL", imageURL)
+      setDalleResult(imageURL);
       
 
     } catch (error) {
