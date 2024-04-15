@@ -7,10 +7,10 @@ import { SendHorizontalIcon } from 'lucide-react'
 
 export default function Speech() {
   // alloy, echo, fable, onyx, nova, and shimmer
-  const [input, setInput] = useState<String>('');
+  const [input, setInput] = useState<string>('');
   const [audio, setAudio] = useState<any>('');
-  const [isLoading, setIsLoading] = useState<Boolean>(false);
-  const [download, setDownlaod] = useState<Boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [download, setDownlaod] = useState<boolean>(false);
   // pass in voices to be chosen by user
   // option to play mp3 or download it
   // pass in Ai model to be used
@@ -86,7 +86,7 @@ export default function Speech() {
               size='icon'
               type='submit'
               variant='secondary'
-              // disabled={isLoading}
+              disabled={isLoading}
               className='absolute right-1 top-1 h-8 w-10'
             >
               <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
