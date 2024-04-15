@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import toast from "react-hot-toast";
 import { Input, Button } from '@/components/ui'
 import { SendHorizontalIcon } from 'lucide-react'
@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default function Dalle3() {
   const [prompt, setPrompt] = useState<string>('');
-  const [dalleResult, setDalleResult] = useState<any>('');
+  const [dalleResult, setDalleResult] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
 
@@ -25,18 +25,13 @@ export default function Dalle3() {
         },
       });
       
-      // Error handling for unsuccessful response
       if (!response.ok) throw new Error("Error generating Image");
 
       const imageURL = await response.json();
 
-      // Notify success and trigger file download
       toast.success("Image generated successfully!");
-
-      console.log("IMAGEURL", imageURL)
       setDalleResult(imageURL);
       
-
     } catch (error) {
       console.error(error);
 
@@ -45,7 +40,6 @@ export default function Dalle3() {
     }
   }
 
-  const src = `${dalleResult}`
   
   return (
     <div className='text-zinc-700'>
@@ -71,10 +65,10 @@ export default function Dalle3() {
                 <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
               </Button>
           </form>
-          {isLoading && <h2>loading</h2>}
+          {isLoading && <h2 className="flex items-center justify-center mt-5">loading...</h2>}
           {dalleResult && (
             // <Image src={dalleResult} width={1000} height={1000} alt={prompt} />
-            <img src={dalleResult} width={1000} height={1000} alt={dalleResult}/>
+            <Image src={dalleResult} width={1000} height={1000} alt={dalleResult}/>
           )}
           
         </div>
