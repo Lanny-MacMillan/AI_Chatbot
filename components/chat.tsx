@@ -6,6 +6,8 @@ import { useChat } from 'ai/react';
 import CopyToClipboard from '@/components/copy-to-clipboard'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { SendHorizontalIcon } from 'lucide-react'
+import PropagateLoader from "react-spinners/PropagateLoader";
+
 
 export default function Chat() {
   const ref = useRef<HTMLDivElement>(null)
@@ -32,18 +34,22 @@ export default function Chat() {
 
   return (
     <section className='text-zinc-700'>
-      <div className="container flex h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffffff] to-[#141c3a]">
+      <div className="container flex h-screen flex-col items-center justify-center">
         <h1 className="text-2xl font-bold text-gray-600">
             Text Generation
         </h1>
-        <div className="mt-4 w-full max-w-lg">
-          {/* response container */}
+        <div className="mt-4 w-full max-w-lg shadow-2xl">
           <div
-            className=' h-[300px] whitespace-nowrap rounded-md border overflow-auto p-4 bg-[#ffffff]'
+            className=' h-[500px] whitespace-nowrap rounded-md border overflow-auto p-4 bg-[#ffffff] '
             ref={ref}
           >
             {messages.map(m => (
-              <div key={m.id} className='mr-6 whitespace-pre-wrap '>
+              isLoading ? (
+                <div className="flex flex-col items-center justify-center h-full">
+                  <PropagateLoader color="#36d7b7" />
+                </div>
+            ) : (
+                <div key={m.id} className='mr-6 whitespace-pre-wrap'>
                 {m.role === 'user' && (
                   <div className='mb-6 flex gap-3'>
                     <Avatar>
@@ -60,7 +66,7 @@ export default function Chat() {
                 )}
 
                 {m.role === 'assistant' && (
-                  <div className='mb-6 flex gap-3'>
+                  <div className='mb-6 flex gap-3 '>
                     <Avatar>
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback className='bg-emerald-500 text-white'>
@@ -79,12 +85,14 @@ export default function Chat() {
                   </div>
                 )}
               </div>
+
+              )
             ))}
           </div>
 
 
-          {/* input form */}
-          <form onSubmit={handleSubmit} className='relative'>
+        </div>
+        <form onSubmit={handleSubmit} className='relative rounded-md w-full max-w-lg mt-10 shadow-2xl'>
             <Input
               name='message'
               value={input}
@@ -102,8 +110,6 @@ export default function Chat() {
               <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
             </Button>
           </form>
-        </div>
-
       </div>
     </section>
   )

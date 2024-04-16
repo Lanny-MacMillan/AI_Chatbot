@@ -6,7 +6,8 @@ import PicturePreview from "@/components/ui/PicturePreview";
 export default function Vision() {
   const [images, setImages] = useState<File[]>([]);
   const [audio, setAudio] = useState<any>('');
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setisLoading] = useState<boolean>(false);
+  const [download, setDownload] = useState<boolean>(false);
   // pass in voices to be chosen by user
   // pass in different text strings for user to choose - silly roast,
   // add input field for custom text for vision to assess users specific needs
@@ -14,10 +15,8 @@ export default function Vision() {
   // pass in Ai model to be used
 
 
-  // Handles changes in the image input field
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      // Converts FileList to array and updates the state
       const filesArray = Array.from(e.target.files);
       setImages(filesArray);
     }
@@ -53,10 +52,8 @@ export default function Vision() {
         },
       });
 
-      // Error handling for unsuccessful response
       if (!response.ok) throw new Error("Error generating audio");
 
-      // Notify success and trigger file download
       toast.success("Audio generated successfully!");
 
       const blob = await response.blob();
