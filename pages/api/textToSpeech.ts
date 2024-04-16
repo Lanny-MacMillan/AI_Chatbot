@@ -7,21 +7,23 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	try {
-		console.log("speech_req:", req.body);
-		const message = req.body;
+		const body = req.body;
+		const prompt = body.input;
+		const voice = body.voice;
+		const model = body.model;
 
 		const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
 
 		console.log("Generating audio...");
 
 		const speech = await openai.audio.speech.create({
-			model: "tts-1",
-			voice: "alloy",
-			input: message,
+			model: model,
+			voice: voice,
+			input: prompt,
 			response_format: "mp3",
 		});
 
-		console.log("Finished generating audio: ", { speech });
+		console.log("Finished generating audio");
 
 		// Convert response to buffer and send as MP3 file
 		const speechMP3Buffer = Buffer.from(await speech.arrayBuffer());
