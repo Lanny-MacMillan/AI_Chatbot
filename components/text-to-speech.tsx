@@ -6,11 +6,9 @@ import { SendHorizontalIcon } from 'lucide-react'
 
 
 export default function Speech() {
-  // alloy, echo, fable, onyx, nova, and shimmer
   const [input, setInput] = useState<string>('');
   const [audio, setAudio] = useState<any>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [download, setDownlaod] = useState<boolean>(false);
   const [voice, setVoice] = useState<string>('');
   const [model, setModel] = useState<string>('');
   const [downloadAudio, setDownloadAudio] = useState<string>('');
@@ -93,14 +91,13 @@ export default function Speech() {
     }
   }
 
-console.log("VOICE", voice)
-console.log("model", model)
-console.log("downloadAudio", downloadAudio)
+
+
   return (
-    <div className='text-zinc-700'>
+    <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
       <div className="container flex h-screen flex-col items-center justify-center">
-        <h1 className="font-serif text-2x1 font-medium">Text to Speech</h1>
-        <div className="mt-4 w-full max-w-lg">
+        <h1 className="font-serif text-[30px] font-medium text-custom-purple-600">Text to Speech</h1>
+        <div className="w-full max-w-lg ">
 
           <audio autoPlay src={audio}></audio>
 
@@ -109,60 +106,62 @@ console.log("downloadAudio", downloadAudio)
               name='message'
               onChange={onChange}
               placeholder='What would you like me to say?...'
-              className='pr-12 placeholder:italic placeholder:text-zinc-600/75 focus-visible:ring-zinc-500'
+              // className='pr-12 placeholder:italic placeholder:text-zinc-600/75 focus-visible:ring-zinc-500'
+              className="inline-flex items-center justify-center rounded  text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 placeholder:italic outline-none"
+
             />
             <Button
               size='icon'
               type='submit'
               variant='secondary'
               disabled={isLoading}
-              className='absolute right-1 top-1 h-8 w-10'
+              className='absolute right-1 top-1 h-9 w-12'
             >
-              <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
+              <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
             </Button>
           </form>
-        <div className='flex flex-row justify-around mt-10'> 
-          <form className="max-w-sm mx-auto flex flex-row ">
-            <select
+          <div className='flex flex-row justify-around mt-10'> 
+            <form className="max-w-sm mx-auto flex flex-row ">
+              <select
+                  onChange={(e) => {
+                  setVoice(e.target.value)
+                  }}
+                  className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
+                  defaultValue={'Choose a voice'}
+                >
+                <option value="alloy" >Choose a voice</option>
+                <option value="alloy">Alloy</option>
+                <option value="echo">Echo</option>
+                <option value="fable">Fable</option>
+                <option value="onyx">Onyx</option>
+                <option value="nova">Nova</option>
+                <option value="shimmer">Shimmer</option>
+              </select>
+            </form>
+            <form className="max-w-sm mx-auto flex flex-row ">
+              <select
+                  onChange={(e) => {
+                    setModel(e.target.value)
+                  }}
+                  className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
+                  defaultValue={'Choose a Model'}>
+                <option value="tts-1">Choose a model</option>
+                <option value="tts-1">tts-1</option>
+                <option value="tts-1-hd">tts-1-hd</option>
+              </select>
+            </form>
+            <form className="max-w-sm mx-auto flex flex-row ">
+              <select
                 onChange={(e) => {
-                setVoice(e.target.value)
+                setDownloadAudio(e.target.value)
                 }}
-                className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-                defaultValue={'Choose a voice'}
-              >
-              <option value="alloy" >Choose a voice</option>
-              <option value="alloy">Alloy</option>
-              <option value="echo">Echo</option>
-              <option value="fable">Fable</option>
-              <option value="onyx">Onyx</option>
-              <option value="nova">Nova</option>
-              <option value="shimmer">Shimmer</option>
-            </select>
-          </form>
-          <form className="max-w-sm mx-auto flex flex-row ">
-            <select
-                onChange={(e) => {
-                  setModel(e.target.value)
-                }}
-                className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-                defaultValue={'tts-1'}>
-              <option value="tts-1">Choose a model</option>
-              <option value="tts-1">tts-1</option>
-              <option value="tts-1-hd">tts-1-hd</option>
-            </select>
-          </form>
-          <form className="max-w-sm mx-auto flex flex-row ">
-            <select
-              onChange={(e) => {
-              setDownloadAudio(e.target.value)
-              }}
-                className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-                defaultValue={'Audio Source'}>
-              <option value="false">Audio Source</option>
-              <option value="true">Download</option>
-              <option value="false">Listen</option>
-            </select>
-          </form>
+                  className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
+                  defaultValue={'Audio Source'}>
+                <option value="false">Audio Source</option>
+                <option value="true">Download</option>
+                <option value="false">Listen</option>
+              </select>
+            </form>
           </div>         
         </div>
 

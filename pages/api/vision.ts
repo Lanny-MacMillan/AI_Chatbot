@@ -9,14 +9,16 @@ export default async function handler(
 	res: NextApiResponse
 ) {
 	try {
-		// Extracting images from the request body
-		const images: string[] = req.body.images;
-
+		const body = req.body;
+		const images: string[] = body.payload.images;
+		const voice = body.voice;
+		const model = body.model;
+		const prompt = body.prompt;
+		// console.log("DATA", { voice, model, prompt, images, body });
 		if (!images || images.length === 0) {
 			res.status(400).json({ message: "No images provided" });
 			return;
 		}
-
 		const openai = new OpenAI();
 
 		// Map images to chat completion content part format
@@ -37,10 +39,10 @@ export default async function handler(
 				{
 					role: "user",
 					content: [
-						// Text content part with the roast description
 						{
+							// Text content part with the prompt
 							type: "text",
-							text: `Concoct a rib-tickling appraisal of an individual's ensemble and aura in their dating profile snapshot. Delve beyond mere sartorial selections to the stance they've struck, the ambiance they're basking in, and the cohort or objects they've enlisted as accessories. Marinate the narrative in a savory roast comedy marinade, seasoned with zesty quips and a dollop of drollery. Celebrate the style misadventures with a nod to their audacious flair, whether they're surfing the edge of avant-garde or charmingly clashing. Satirize the gym buffs, globe-trotters, and gastronomy aficionados with whimsical analogies that elevate mundane profile props to comedic fame. In crowd shots, weave in a playful 'whodunnit' jest, spotlighting the amusing quest to pinpoint the profile's protagonist. Elevate the prose with metaphors and similes that paint the scene as if it's a sprightly episode of a fashion critique comedy skit. The roast should emit warmth and merriment, crafting a convivial jeer that tickles the funny bone with tender affection, steering clear of the lane of offense. All while speaking plainly, as if to a friend. IMPORTANT: Make sure your response is less than 60 words`,
+							text: prompt,
 						},
 						// Image content parts
 						...imageMessages,
@@ -62,8 +64,8 @@ export default async function handler(
 
 		// Generate speech from the AI message
 		const visionMP3 = await openai.audio.speech.create({
-			model: "tts-1",
-			voice: "alloy",
+			model: model,
+			voice: voice,
 			input: aiMessage,
 			response_format: "mp3",
 		});
@@ -75,6 +77,7 @@ export default async function handler(
 		res.setHeader("Content-Type", "audio/mpeg");
 		res.setHeader("Content-Disposition", 'attachment; filename="vision.mp3"');
 		res.status(200).send(visionMP3Buffer);
+		// res.status(200).send("test");
 	} catch (error) {
 		// Error handling
 		console.error("Error in generating audio:", error);

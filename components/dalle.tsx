@@ -44,9 +44,9 @@ export default function Dalle3() {
   
   return (
     <>
-      <div className='text-zinc-700'>
+      <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
         <div className="container flex h-screen flex-col items-center">
-          <h1 className="font-serif text-2x1 font-medium">Dalle-3 Image generation</h1>
+          <h1 className="font-serif text-[30px] font-medium text-custom-purple-600">Dalle-3 Image Generation</h1>
           <div className="mt-4 w-full max-w-lg">
             <form onSubmit={handleDalleSubmit} className='relative'>
               <Input
@@ -64,7 +64,7 @@ export default function Dalle3() {
                   // disabled={isLoading}
                   className='absolute right-1 top-1 h-8 w-10'
                 >
-                  <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
+                  <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
                 </Button>
             </form>
           </div>

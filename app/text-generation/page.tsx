@@ -5,6 +5,7 @@ export const runtime = 'edge'
 
 export default function Introduction() {
 
+
   return (
     <>
       <NavigationMenuAi/>

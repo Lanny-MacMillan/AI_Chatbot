@@ -1,19 +1,26 @@
 "use client";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { Input, Button } from '@/components/ui'
 import PicturePreview from "@/components/ui/PicturePreview";
+import { sillyPrompt, fashionPrompt, seriousPrompt, aiThoughts } from "@/public/constants";
 
 export default function Vision() {
   const [images, setImages] = useState<File[]>([]);
   const [audio, setAudio] = useState<any>('');
   const [isLoading, setisLoading] = useState<boolean>(false);
-  const [download, setDownload] = useState<boolean>(false);
-  // pass in voices to be chosen by user
-  // pass in different text strings for user to choose - silly roast,
-  // add input field for custom text for vision to assess users specific needs
-  // option to play mp3 or download it
-  // pass in Ai model to be used
+  const [voice, setVoice] = useState<string>('');
+  const [model, setModel] = useState<string>('');
+  const [manualPrompt, setManualPrompt] = useState<string>('');
+  const [prompt, setPrompt] = useState<string>('');
 
+  // audio visualizer, play and pause, restart options
+  // pull aiMessage from vision.ts and render text in UI
+
+  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const newValue = e.currentTarget.value;
+    setPrompt(newValue)
+  }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -21,6 +28,29 @@ export default function Vision() {
       setImages(filesArray);
     }
   };
+
+  const handlePrompt = (choice: string) => {
+    console.log('choice',choice)
+    switch (choice) {
+      case 'Ai thoughts':
+        setPrompt(aiThoughts)
+        break;
+      case 'manual':
+        setManualPrompt('manual')
+        break;
+      case 'roast':
+        setPrompt(sillyPrompt)
+        break;
+      case 'fashion advice':
+        setPrompt(fashionPrompt)
+        break;
+      case 'serious thoughts':
+        setPrompt(seriousPrompt)
+        break;
+      default:
+        return null
+    }
+  }
 
   // Function to process and assess the images
   const assessImages = async () => {
@@ -45,7 +75,7 @@ export default function Vision() {
     try {
       // API call to the endpoint
       const response = await fetch("/api/vision", {
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ payload, prompt, voice, model }),
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,18 +85,10 @@ export default function Vision() {
       if (!response.ok) throw new Error("Error generating audio");
 
       toast.success("Audio generated successfully!");
-
+      console.log("RESPONSE", { response })
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
       setAudio(downloadUrl);
-
-
-      // const link = document.createElement("a");
-      // link.href = downloadUrl;
-      // link.setAttribute("download", "vision.mp3");
-      // document.body.appendChild(link);
-      // link.click();
-      // document.body.removeChild(link);
 
     } catch (error) {
 
@@ -82,28 +104,20 @@ export default function Vision() {
 
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffffff] to-[#141c3a]">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffffff] to-[#5be9b9]">
 
       <div
-        className="bg-transparent rounded-lg p-6 text-center flex flex-col justify-between"
+        className="container flex bg-transparent rounded-lg p-6 text-center flex flex-col justify-between"
         style={{ height: "500px" }}
       >
       <div className="flex flex-col items-center">
         <div className="flex flex-row justify-center items-center">
           <audio autoPlay src={audio}></audio>
-              
-        {/* <Image
-          className="w-[40px] h-[50px] mr-3"
-          src="/images/logo.png"
-          height={50}
-          width={40}
-          alt={"Missing"}
-        /> */}
-        <h1 className="text-2xl font-bold text-gray-600">
+        <h1 className="text-2xl font-bold text-custom-purple-600">
           Vision Ai
         </h1>
       </div>
-      <h2 className="text-l mt-2 font-semibold text-gray-500">
+      <h2 className="text-l mt-2 font-semibold text-custom-purple-500">
         Upload your images and get insights from Ai!
       </h2>
           </div>
@@ -114,8 +128,8 @@ export default function Vision() {
             {images.length === 0 ? (
               <>
                 <label className="cursor-pointer">
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 mt-2  w-64">
-                    <p className="text-lg text-gray-300">Upload Images</p>
+                  <div className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-2  w-64">
+                    <p className="text-lg text-custom-purple-600">Upload Images</p>
                       <input
                         type="file"
                         accept="image/*"
@@ -128,7 +142,7 @@ export default function Vision() {
                   </div>                  
                 </label>
                   {images.length === 0 && (
-                      <p className="text-xs text-gray-500 mt-2">
+                      <p className="text-xs text-custom-purple-500 mt-2">
                         You need to upload an image to use Vision
                       </p>
                     )}
@@ -138,14 +152,85 @@ export default function Vision() {
                   <div>
                     <button
                       onClick={() => void assessImages()}
-                      className="border-2 border-dashed border-gray-300 rounded-lg p-4 mt-2  w-64 text-gray-300"
+                      className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-2  w-64 text-custom-purple-600"
                       disabled={isLoading || images.length === 0}
                     >
                       {isLoading ? "Generating..." : "Assess"}
                     </button>
                   </div>
-                      </>
-                  )}
+                  <div className="w-full max-w-lg">
+                    <div className='flex flex-row justify-around mt-5'> 
+                      <form className="max-w-sm mx-auto flex flex-row ">
+                        <select
+                            onChange={(e) => {
+                            setVoice(e.target.value)
+                            }}
+                            className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
+                            defaultValue={'Choose a voice'}
+                          >
+                          <option value="alloy" >Choose a voice</option>
+                          <option value="alloy">Alloy</option>
+                          <option value="echo">Echo</option>
+                          <option value="fable">Fable</option>
+                          <option value="onyx">Onyx</option>
+                          <option value="nova">Nova</option>
+                          <option value="shimmer">Shimmer</option>
+                        </select>
+                      </form>
+                      <form className="max-w-sm mx-auto flex flex-row ">
+                        <select
+                            onChange={(e) => {
+                              setModel(e.target.value)
+                            }}
+                            className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
+                            defaultValue={'Choose a Model'}>
+                          <option value="tts-1">Choose a model</option>
+                          <option value="tts-1">tts-1</option>
+                          <option value="tts-1-hd">tts-1-hd</option>
+                        </select>
+                      </form>
+                      <form className="max-w-sm mx-auto flex flex-row ">
+                        <select
+                          onChange={(e) => {
+                            handlePrompt(e.target.value)
+                          }}
+                            className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
+                            defaultValue={'Prompt'}>
+                          <option value="Ai thoughts">Prompts</option>
+                          <option value="roast">silly roast</option>
+                          <option value="fashion advice">funny fashion advice</option>
+                          <option value="serious thoughts">serious thoughts</option>
+                          <option value="manual">manual</option>
+                          <option value="Ai thoughts">Ai thoughts</option>
+                        </select>
+                      </form>
+                      
+                    </div>
+                    {manualPrompt === 'manual' ? (
+                      <form
+                      className='relative  mt-5'>
+                      <Input
+                        name='message'
+                        onChange={onChange}
+                        placeholder='What would you like me to say?...'
+                        className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 placeholder:italic outline-none"
+                      />
+                      {/* <Button
+                        size='icon'
+                        type='submit'
+                        variant='secondary'
+                        disabled={isLoading}
+                        className='absolute right-1 top-1 h-9 w-12'
+                      >
+                        <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
+                      </Button> */}
+                    </form>
+                    ) : <div className="h-[65px]"/>
+                    }
+
+                  </div>  
+                </>
+              )}
           </div>
         </div>
       </main>
