@@ -9,9 +9,9 @@ export default function Speech() {
   const [input, setInput] = useState<string>('');
   const [audio, setAudio] = useState<any>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [voice, setVoice] = useState<string>('');
-  const [model, setModel] = useState<string>('');
-  const [downloadAudio, setDownloadAudio] = useState<string>('');
+  const [voice, setVoice] = useState<string>('alloy');
+  const [model, setModel] = useState<string>('tts-1');
+  const [downloadAudio, setDownloadAudio] = useState<string>('false');
   const waveformRef = useRef(null);
   const wavesurfer = useRef(null);
   const ref = useRef({ waveformRef, wavesurfer });
@@ -20,7 +20,7 @@ export default function Speech() {
     const newValue = e.currentTarget.value;
     setInput(newValue)
   }
-
+console.log("SUBMIT", { voice, model, downloadAudio, input, audio})
   const handleSubmitDownload = async (e: any) => {
     e.preventDefault();
     try {
@@ -63,6 +63,7 @@ export default function Speech() {
 
   const handleSubmitAudio = async (e: any) => {
     e.preventDefault();
+    setAudio('')
     try {
       setIsLoading(true)
 
@@ -101,7 +102,7 @@ export default function Speech() {
         <div className="w-full max-w-lg ">
           <Wavesurfer audio={audio}/>
           
-          <audio autoPlay src={audio}></audio>
+          {/* <audio autoPlay src={audio}></audio> */}
 
           <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative'>
             <Input
@@ -116,7 +117,7 @@ export default function Speech() {
               size='icon'
               type='submit'
               variant='secondary'
-              disabled={isLoading}
+              disabled={isLoading || input.length === 0}
               className='absolute right-1 top-1 h-9 w-12'
             >
               <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />

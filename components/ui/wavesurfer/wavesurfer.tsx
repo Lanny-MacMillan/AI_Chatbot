@@ -1,4 +1,6 @@
 "use client";
+// import audiomp3 from '../../../public/0I'
+import audio from '@/public/audio/audio.mp3'
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
@@ -11,10 +13,8 @@ import {
 
 const Wavesurfer = ({audio}: any) => {
   const waveformRef = useRef(null);
-  let wavesurfer: any;
   
-  const ref = useRef({ waveformRef, wavesurfer });
-
+  let wavesurfer: any;
 
   // const [playPause, setPlayPause] = useState();
   
@@ -46,7 +46,7 @@ const Wavesurfer = ({audio}: any) => {
     return () => {
       wavesurfer.destroy();
     };
-  }, []);
+  }, [audio]);
 
   const handleStop = () => {
     if (wavesurfer) {
