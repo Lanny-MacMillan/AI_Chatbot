@@ -3,7 +3,7 @@ import { useState, useRef } from 'react'
 import toast from "react-hot-toast";
 import { Input, Button } from '@/components/ui'
 import { SendHorizontalIcon } from 'lucide-react'
-
+import Wavesurfer from './ui/wavesurfer/wavesurfer';
 
 export default function Speech() {
   const [input, setInput] = useState<string>('');
@@ -12,8 +12,9 @@ export default function Speech() {
   const [voice, setVoice] = useState<string>('');
   const [model, setModel] = useState<string>('');
   const [downloadAudio, setDownloadAudio] = useState<string>('');
-
-
+  const waveformRef = useRef(null);
+  const wavesurfer = useRef(null);
+  const ref = useRef({ waveformRef, wavesurfer });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
@@ -98,7 +99,8 @@ export default function Speech() {
       <div className="container flex h-screen flex-col items-center justify-center">
         <h1 className="font-serif text-[30px] font-medium text-custom-purple-600">Text to Speech</h1>
         <div className="w-full max-w-lg ">
-
+          <Wavesurfer audio={audio}/>
+          
           <audio autoPlay src={audio}></audio>
 
           <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative'>

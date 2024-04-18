@@ -74,3 +74,52 @@
 		@apply bg-background text-foreground;
 	}
 }
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 4rem;
+}
+.sub-container {
+	height: 28rem;
+	width: 22vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 1.1rem;
+	background: #191b28;
+	box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40;
+}
+.audio-image {
+	height: 10rem;
+	width: 18vw;
+	border-radius: 10px;
+	margin: 2rem 0;
+	border: 0.2rem solid white;
+}
+.sub-container p {
+	color: #fff;
+	margin: 0.5rem 0;
+	font-size: 0.8rem;
+}
+.wavesurfer-container {
+	margin: 1rem 0;
+}
+.wavesurfer-controls {
+	display: flex;
+	margin-top: 1.5rem;
+}
+.wavesurfer-controls button {
+	font-size: 1.5rem;
+	color: white;
+	margin: 0 0.5rem;
+}
+.wavesurfer-controls button:nth-child(2),
+.wavesurfer-controls button:nth-child(3) {
+	background-color: #f90;
+	background: linear-gradient(210deg, #f90, rgb(227, 180, 114));
+	border-radius: 2rem;
+	padding: 0.8rem;
+	background: #191b28;
+	box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40;
+}
