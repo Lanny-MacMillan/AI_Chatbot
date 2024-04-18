@@ -25,13 +25,13 @@ const components: { title: string; href: string; description: string }[] = [
     title: "Image Generator",
     href: "/image-generator",
     description:
-      "Generate or manipulate images with DALL·E from OpenAI",
+      "Generate images with DALL·E from OpenAI",
   },
   {
     title: "Open AI Vision",
     href: "/vision",
     description:
-      "Use GPT-4 to understand images.",
+      "Vision is best at answering general questions about what is present in the images.",
   },
   {
     title: "Text-to-Speech",
@@ -56,11 +56,11 @@ export function NavigationMenuAi() {
                   >
                     {/* <Icons.logo className="h-6 w-6" /> */}
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      AI Chatbot
+                      Ai Toolbox
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Beautiful and simply designed components built with Radix UI and
-                      Tailwind CSS for this AI Chatbot.
+                      Tailwind CSS for this AI Toolbox.
                     </p>
                   </a>
                 </NavigationMenuLink>
