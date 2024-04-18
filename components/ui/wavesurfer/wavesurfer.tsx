@@ -1,31 +1,27 @@
 "use client";
-// import audiomp3 from '../../../public/0I'
-import audio from '@/public/audio/audio.mp3'
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+
+import React, { useEffect, useState, useRef} from "react";
 import WaveSurfer from "wavesurfer.js";
 import {
   BsFillStopFill,
   BsFillPlayFill,
+  BsFillPauseFill,
   BsSkipForward,
   BsSkipBackward,
 } from "react-icons/bs";
 
-const Wavesurfer = ({audio}: any) => {
+const Wavesurfer = ({audio, pause, setPause}: any) => {
   const waveformRef = useRef(null);
-  
   let wavesurfer: any;
-
-  // const [playPause, setPlayPause] = useState();
   
   useEffect(() => {
     wavesurfer = WaveSurfer.create({
       container: '#waveform',
-      waveColor: "#34374B",
-      progressColor: "#F90",
+      waveColor: "#6e56cf",
+      progressColor: "#141c3a30",
       url: audio,
       dragToSeek: true,
-      width: "35vw",
+      width: "50vw",
       hideScrollbar: true,
       normalize: true,
       barGap: 1,
@@ -35,9 +31,8 @@ const Wavesurfer = ({audio}: any) => {
       barWidth: 5,
     });
 
-
     wavesurfer.on("finish", () => {
-      console.log("song finished");
+      console.log("audio complete");
     });
 
     wavesurfer.on("ready", () => {
@@ -78,6 +73,7 @@ const Wavesurfer = ({audio}: any) => {
           <button onClick={handleSkipBack}>
             <BsSkipBackward />
           </button>
+          
           <button onClick={handlePause}>
             <BsFillPlayFill />
           </button>

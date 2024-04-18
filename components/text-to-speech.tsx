@@ -12,17 +12,18 @@ export default function Speech() {
   const [voice, setVoice] = useState<string>('alloy');
   const [model, setModel] = useState<string>('tts-1');
   const [downloadAudio, setDownloadAudio] = useState<string>('false');
-  const waveformRef = useRef(null);
-  const wavesurfer = useRef(null);
-  const ref = useRef({ waveformRef, wavesurfer });
+  const [pause, setPause] = useState<boolean>(false);
+
+  
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setInput(newValue)
   }
-console.log("SUBMIT", { voice, model, downloadAudio, input, audio})
+
   const handleSubmitDownload = async (e: any) => {
     e.preventDefault();
+    setAudio('')
     try {
       setIsLoading(true)
 
@@ -34,11 +35,8 @@ console.log("SUBMIT", { voice, model, downloadAudio, input, audio})
         },
       });
       
-
-      // Error handling for unsuccessful response
       if (!response.ok) throw new Error("Error generating audio");
 
-      // Notify success and trigger file download
       toast.success("Audio generated successfully!");
 
       const blob = await response.blob();
@@ -52,7 +50,6 @@ console.log("SUBMIT", { voice, model, downloadAudio, input, audio})
       link.click();
       document.body.removeChild(link);
       
-
     } catch (error) {
       console.error(error);
 
@@ -75,10 +72,8 @@ console.log("SUBMIT", { voice, model, downloadAudio, input, audio})
         },
       });
       
-      // Error handling for unsuccessful response
       if (!response.ok) throw new Error("Error generating audio");
 
-      // Notify success and trigger file download
       toast.success("Audio generated successfully!");
 
       const blob = await response.blob();
@@ -92,24 +87,22 @@ console.log("SUBMIT", { voice, model, downloadAudio, input, audio})
       setIsLoading(false)
     }
   }
-
+  
 
 
   return (
-    <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
-      <div className="container flex h-screen flex-col items-center justify-center">
+    <div className='flex bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
+      <div className="flex h-screen w-screen flex-col items-center justify-around">
         <h1 className="font-serif text-[30px] font-medium text-custom-purple-600">Text to Speech</h1>
         <div className="w-full max-w-lg ">
-          <Wavesurfer audio={audio}/>
-          
-          {/* <audio autoPlay src={audio}></audio> */}
 
+          {audio ? <Wavesurfer audio={audio} pause={pause} setPause={setPause} /> : <div style={{height: '15rem'}} />}
+          
           <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative'>
             <Input
               name='message'
               onChange={onChange}
               placeholder='What would you like me to say?...'
-              // className='pr-12 placeholder:italic placeholder:text-zinc-600/75 focus-visible:ring-zinc-500'
               className="inline-flex items-center justify-center rounded  text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 placeholder:italic outline-none"
 
             />

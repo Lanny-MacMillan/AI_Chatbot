@@ -78,17 +78,17 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 4rem;
+	/* padding-top: 4rem; */
 }
 .sub-container {
-	height: 28rem;
-	width: 22vw;
+	height: 15rem;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	border-radius: 1.1rem;
-	background: #191b28;
-	box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40;
+	/* background: #191b28; */
+	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
 }
 .audio-image {
 	height: 10rem;
@@ -111,15 +111,25 @@
 }
 .wavesurfer-controls button {
 	font-size: 1.5rem;
-	color: white;
+	color: #6e56cf;
 	margin: 0 0.5rem;
 }
-.wavesurfer-controls button:nth-child(2),
-.wavesurfer-controls button:nth-child(3) {
-	background-color: #f90;
-	background: linear-gradient(210deg, #f90, rgb(227, 180, 114));
+
+.wavesurfer-controls button:nth-child(1),
+.wavesurfer-controls button:nth-child(4) {
 	border-radius: 2rem;
 	padding: 0.8rem;
-	background: #191b28;
-	box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40;
+	outline: 2px solid #7427f7;
+	/* background: #191b28; */
+	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
+}
+
+.wavesurfer-controls button:nth-child(2),
+.wavesurfer-controls button:nth-child(3) {
+	border-radius: 2rem;
+	padding: 0.8rem;
+	background: #141c3a;
+	outline: 2px solid #7427f7;
+	/* background: #191b28; */
+	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
 }

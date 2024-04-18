@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Input, Button } from '@/components/ui'
 import PicturePreview from "@/components/ui/PicturePreview";
+import Wavesurfer from './ui/wavesurfer/wavesurfer';
 import { sillyPrompt, fashionPrompt, seriousPrompt, aiThoughts } from "@/public/constants";
 
 export default function Vision() {
@@ -13,6 +14,7 @@ export default function Vision() {
   const [model, setModel] = useState<string>('');
   const [manualPrompt, setManualPrompt] = useState<string>('');
   const [prompt, setPrompt] = useState<string>('');
+  const [pause, setPause] = useState<boolean>(false);
 
   // audio visualizer, play and pause, restart options
   // pull aiMessage from vision.ts and render text in UI
@@ -112,11 +114,13 @@ export default function Vision() {
       >
       <div className="flex flex-col items-center">
         <div className="flex flex-row justify-center items-center">
-          <audio autoPlay src={audio}></audio>
-        <h1 className="text-2xl font-bold text-custom-purple-600">
-          Vision Ai
-        </h1>
-      </div>
+
+          {/* <audio autoPlay src={audio}></audio> */}
+          <h1 className="text-2xl font-bold text-custom-purple-600">
+            Vision Ai
+          </h1>
+        </div>
+
       <h2 className="text-l mt-2 font-semibold text-custom-purple-500">
         Upload your images and get insights from Ai!
       </h2>
@@ -215,18 +219,11 @@ export default function Vision() {
                         placeholder='What would you like me to say?...'
                         className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 placeholder:italic outline-none"
                       />
-                      {/* <Button
-                        size='icon'
-                        type='submit'
-                        variant='secondary'
-                        disabled={isLoading}
-                        className='absolute right-1 top-1 h-9 w-12'
-                      >
-                        <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
-                      </Button> */}
+
                     </form>
                     ) : <div className="h-[65px]"/>
                     }
+                    {audio ? <Wavesurfer audio={audio} pause={pause} setPause={setPause} /> : <div style={{height: '15rem'}} />}
 
                   </div>  
                 </>
