@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 const { mauve, violet } = require("@radix-ui/colors");
+
 const config = {
 	darkMode: ["class"],
 	content: [
@@ -18,19 +19,10 @@ const config = {
 			},
 		},
 		extend: {
-			// background: {
-			// 	background:
-			// 		"linear-gradient(300deg,#141c3a,#5be9b9,#7427f7,#5be9b9,#141c3a)",
-			// 	"background-size": "300% 300%",
-			// 	animation: "gradient-animation 30s ease infinite",
-			// 	keyframes: {
-			// 		wave: {
-			// 			"0%": { "background-position": "0% 50%" },
-			// 			"50%": { "background-position": "100% 50%" },
-			// 			"100%": { "background-position": "0% 50%" },
-			// 		},
-			// 	},
-			// },
+			fontFamily: {
+				custom1: ["Custom-1", "sans-serif"],
+				custom2: ["Custom-2", "sans-serif"],
+			},
 			colors: {
 				"custom-white": "#ffffff",
 				"custom-teal": {
@@ -48,6 +40,14 @@ const config = {
 					"400": "#6e56cf",
 					"500": "#7427f7",
 					"600": "#5842d9",
+				},
+				"custom-magenta": {
+					"100": "#ebc5f2",
+					"200": "#d78be5",
+					"300": "#c965dc",
+					"400": "#bc3ed3",
+					"500": "#842b94",
+					"600": "#4b1954",
 				},
 				"custom-dark": "#141c3a",
 				...mauve,

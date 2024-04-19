@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: "Custom-1";
+	src: url("/font/MontserratAlternates-Black.ttf");
+}
+
+@font-face {
+	font-family: "Custom-2";
+	src: url("/font/MontserratAlternates-BlackItalic.ttf");
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;
@@ -132,4 +142,9 @@
 	outline: 2px solid #7427f7;
 	/* background: #191b28; */
 	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
+}
+.text {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 800;
+	font-style: italic;
 }

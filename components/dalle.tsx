@@ -46,9 +46,9 @@ export default function Dalle3() {
     <>
       <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
         <div className="container flex h-screen flex-col items-center">
-          <h1 className="font-serif text-[30px] font-medium text-custom-purple-600">Dalle-3 Image Generation</h1>
+          <p className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-6xl font-custom1 pb-10 text-center">Dalle-3 Image Generation</p>
           <div className="mt-4 w-full max-w-lg">
-            <form onSubmit={handleDalleSubmit} className='relative'>
+            <form onSubmit={handleDalleSubmit} className='relative rounded-md w-full max-w-lg mt-10 shadow-2xl'>
               <Input
                 type='text'
                 value={prompt}

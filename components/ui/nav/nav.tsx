@@ -42,6 +42,15 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function NavigationMenuAi() {
   return (
+    <>
+      <div
+        style={{
+          borderWidth: 0,
+          borderBottom: '4px solid',
+          borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
+        }}
+      className="bg-custom-purple-200 p-2">
+
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
@@ -90,7 +99,9 @@ export function NavigationMenuAi() {
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
-    </NavigationMenu>
+      </NavigationMenu>
+      </div>
+    </>
   )
 }
 
@@ -104,7 +115,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground bg-custom-purple-100",
             className
           )}
           {...props}
