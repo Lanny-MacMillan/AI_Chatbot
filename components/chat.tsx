@@ -43,7 +43,7 @@ export default function Chat() {
     <section className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9]' 
     >
       <div className="container flex h-screen flex-col items-center justify-center">
-        <h1 className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-custom1  text-center">
+        <h1 className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center">
             Text Generation
         </h1>
         <div className="mt-4 w-full max-w-lg shadow-2xl">
@@ -106,7 +106,7 @@ export default function Chat() {
               value={input}
               onChange={handleInputChange}
               placeholder='Ask me anything...'
-              className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 placeholder:italic outline-none"
+              className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 placeholder:italic outline-none font-customBlackItalic"
               />
           <Button
               size='icon'
@@ -115,7 +115,7 @@ export default function Chat() {
               disabled={isLoading}
               className='absolute right-1 top-1 h-9 w-12'
             >
-              <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
+              <SendHorizontalIcon className='h-5 w-5 text-custom-teal-500' />
             </Button>
           </form>
       </div>

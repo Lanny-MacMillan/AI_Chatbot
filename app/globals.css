@@ -12,6 +12,36 @@
 	src: url("/font/MontserratAlternates-BlackItalic.ttf");
 }
 
+@font-face {
+	font-family: "Custom-3";
+	src: url("/font/MontserratAlternates-LightItalic.ttf");
+}
+
+@font-face {
+	font-family: "Custom-4";
+	src: url("/font/MontserratAlternates-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Custom-5";
+	src: url("/font/MontserratAlternates-SemiBold.ttf");
+}
+
+@font-face {
+	font-family: "Custom-6";
+	src: url("/font/MontserratAlternates-Thin.ttf");
+}
+
+@font-face {
+	font-family: "Custom-7";
+	src: url("/font/MontserratAlternates-Italic.ttf");
+}
+
+@font-face {
+	font-family: "Custom-8";
+	src: url("/font/MontserratAlternates-BoldItalic.ttf");
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;

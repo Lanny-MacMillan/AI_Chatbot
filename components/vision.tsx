@@ -122,7 +122,7 @@ console.log("isLoading", isLoading)
         <div className="flex flex-row justify-center items-center">
 
           {/* <audio autoPlay src={audio}></audio> */}
-          <h1 className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-6xl font-custom1 pb-10 text-center">
+          <h1 className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-6xl font-customBlack pb-10 text-center">
             Vision Ai
           </h1>
         </div>

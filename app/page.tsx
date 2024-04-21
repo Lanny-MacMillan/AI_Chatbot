@@ -13,7 +13,7 @@ export default function Home() {
         <div className="container flex h-screen flex-col items-center justify-center">
           <h1
             id='text'
-            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-9xl font-custom1">Ai Toolbox</h1>
+            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-9xl font-customBlack">Ai Toolbox</h1>
         </div>
       </section>
     </div>

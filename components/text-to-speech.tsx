@@ -93,7 +93,7 @@ export default function Speech() {
   return (
     <div className='flex bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
       <div className=" container flex h-screen w-screen flex-col items-center justify-around">
-        <h1 className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-custom1 pb-10 text-center">Text to Speech</h1>
+        <h1 className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-customBlack pb-10 text-center">Text to Speech</h1>
         <div className="w-full max-w-lg ">
 
           {audio ? <Wavesurfer audio={audio} pause={pause} setPause={setPause} /> : <div style={{height: '15rem'}} />}
@@ -116,7 +116,7 @@ export default function Speech() {
               <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
             </Button>
           </form>
-          <div className='flex flex-row justify-around mt-10 '> 
+          <div className='flex flex-row justify-around mt-10 max-w-lg'> 
             <form className="max-w-sm mx-auto flex flex-row ">
               <select
                   onChange={(e) => {

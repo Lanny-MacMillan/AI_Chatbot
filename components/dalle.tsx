@@ -46,7 +46,7 @@ export default function Dalle3() {
     <>
       <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
         <div className="container flex h-screen flex-col items-center">
-          <p className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-6xl font-custom1 pb-10 text-center">Dalle-3 Image Generation</p>
+          <p className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack pb-7 text-center">Dalle-3 Image Generation</p>
           <div className="mt-4 w-full max-w-lg">
             <form onSubmit={handleDalleSubmit} className='relative rounded-md w-full max-w-lg mt-10 shadow-2xl'>
               <Input
@@ -55,7 +55,7 @@ export default function Dalle3() {
                 name='message'
                 onChange={(e) => setPrompt(e.currentTarget.value)}
                 placeholder='What would you like to see?...'
-                className='pr-12 placeholder:italic placeholder:text-zinc-600/75 focus-visible:ring-zinc-500'
+                className='inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 data-placeholder:customBlackItalic outline-none '
                 />
                 <Button
                   size='icon'
@@ -64,19 +64,18 @@ export default function Dalle3() {
                   // disabled={isLoading}
                   className='absolute right-1 top-1 h-8 w-10'
                 >
-                  <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
+                  <SendHorizontalIcon className='h-5 w-5 text-custom-teal-500' />
                 </Button>
             </form>
           </div>
           
-          <div className="flex items-center mt-10">
+          <div className="flex items-center justify-center align-center mt-10">
             {isLoading && (
                 <BounceLoader size='130px' color="rgba(0, 218, 248, 1)" />
-
               )}
             {dalleResult && (
-                <Image src={tempUrl} width={1000} height={1000} alt={dalleResult}/>
-              )}
+                <Image src={dalleResult} width={500} height={500} alt={dalleResult}/>
+            )}
           </div>
 
         </div>

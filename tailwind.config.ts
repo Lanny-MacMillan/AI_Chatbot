@@ -20,8 +20,14 @@ const config = {
 		},
 		extend: {
 			fontFamily: {
-				custom1: ["Custom-1", "sans-serif"],
-				custom2: ["Custom-2", "sans-serif"],
+				customBlack: ["Custom-1", "sans-serif"],
+				customBlackItalic: ["Custom-2", "sans-serif"],
+				customLightItalic: ["Custom-3", "sans-serif"],
+				customRegular: ["Custom-4", "sans-serif"],
+				customSemiBold: ["Custom-5", "sans-serif"],
+				customThin: ["Custom-6", "sans-serif"],
+				customItalic: ["Custom-7", "sans-serif"],
+				customBoldItalic: ["Custom-8", "sans-serif"],
 			},
 			colors: {
 				"custom-white": "#ffffff",
