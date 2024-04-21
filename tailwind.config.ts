@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 const { mauve, violet } = require("@radix-ui/colors");
+
 const config = {
 	darkMode: ["class"],
 	content: [
@@ -18,25 +19,41 @@ const config = {
 			},
 		},
 		extend: {
-			// background: {
-			// 	background:
-			// 		"linear-gradient(300deg,#141c3a,#5be9b9,#7427f7,#5be9b9,#141c3a)",
-			// 	"background-size": "300% 300%",
-			// 	animation: "gradient-animation 30s ease infinite",
-			// 	keyframes: {
-			// 		wave: {
-			// 			"0%": { "background-position": "0% 50%" },
-			// 			"50%": { "background-position": "100% 50%" },
-			// 			"100%": { "background-position": "0% 50%" },
-			// 		},
-			// 	},
-			// },
+			fontFamily: {
+				customBlack: ["Custom-1", "sans-serif"],
+				customBlackItalic: ["Custom-2", "sans-serif"],
+				customLightItalic: ["Custom-3", "sans-serif"],
+				customRegular: ["Custom-4", "sans-serif"],
+				customSemiBold: ["Custom-5", "sans-serif"],
+				customThin: ["Custom-6", "sans-serif"],
+				customItalic: ["Custom-7", "sans-serif"],
+				customBoldItalic: ["Custom-8", "sans-serif"],
+			},
 			colors: {
 				"custom-white": "#ffffff",
-				"custom-teal": "#5be9b9",
+				"custom-teal": {
+					"100": "#cef8ea",
+					"200": "#adf4dc",
+					"300": "#8cf0ce",
+					"400": "#5be9b9",
+					"500": "#49ba94",
+					"600": "#40a382",
+				},
 				"custom-purple": {
-					"500": "#6e56cf",
-					"600": "#7427f7",
+					"100": "#f0edfc",
+					"200": "#b7abe7",
+					"300": "#8b78d9",
+					"400": "#6e56cf",
+					"500": "#7427f7",
+					"600": "#5842d9",
+				},
+				"custom-magenta": {
+					"100": "#ebc5f2",
+					"200": "#d78be5",
+					"300": "#c965dc",
+					"400": "#bc3ed3",
+					"500": "#842b94",
+					"600": "#4b1954",
 				},
 				"custom-dark": "#141c3a",
 				...mauve,

@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: "Custom-1";
+	src: url("/font/MontserratAlternates-Black.ttf");
+}
+
+@font-face {
+	font-family: "Custom-2";
+	src: url("/font/MontserratAlternates-BlackItalic.ttf");
+}
+
+@font-face {
+	font-family: "Custom-3";
+	src: url("/font/MontserratAlternates-LightItalic.ttf");
+}
+
+@font-face {
+	font-family: "Custom-4";
+	src: url("/font/MontserratAlternates-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Custom-5";
+	src: url("/font/MontserratAlternates-SemiBold.ttf");
+}
+
+@font-face {
+	font-family: "Custom-6";
+	src: url("/font/MontserratAlternates-Thin.ttf");
+}
+
+@font-face {
+	font-family: "Custom-7";
+	src: url("/font/MontserratAlternates-Italic.ttf");
+}
+
+@font-face {
+	font-family: "Custom-8";
+	src: url("/font/MontserratAlternates-BoldItalic.ttf");
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;
@@ -73,4 +113,68 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* padding-top: 4rem; */
+}
+.sub-container {
+	height: 15rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 1.1rem;
+	/* background: #191b28; */
+	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
+}
+.audio-image {
+	height: 10rem;
+	width: 18vw;
+	border-radius: 10px;
+	margin: 2rem 0;
+	border: 0.2rem solid white;
+}
+.sub-container p {
+	color: #fff;
+	margin: 0.5rem 0;
+	font-size: 0.8rem;
+}
+.wavesurfer-container {
+	margin: 1rem 0;
+}
+.wavesurfer-controls {
+	display: flex;
+	margin-top: 1.5rem;
+}
+.wavesurfer-controls button {
+	font-size: 1.5rem;
+	color: #6e56cf;
+	margin: 0 0.5rem;
+}
+
+.wavesurfer-controls button:nth-child(1),
+.wavesurfer-controls button:nth-child(4) {
+	border-radius: 2rem;
+	padding: 0.8rem;
+	outline: 2px solid #7427f7;
+	/* background: #191b28; */
+	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
+}
+
+.wavesurfer-controls button:nth-child(2),
+.wavesurfer-controls button:nth-child(3) {
+	border-radius: 2rem;
+	padding: 0.8rem;
+	background: #141c3a;
+	outline: 2px solid #7427f7;
+	/* background: #191b28; */
+	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
+}
+.text {
+	font-family: "Montserrat Alternates", sans-serif;
+	font-weight: 800;
+	font-style: italic;
 }
