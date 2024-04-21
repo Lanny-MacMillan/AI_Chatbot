@@ -103,17 +103,15 @@ export default function Speech() {
               name='message'
               onChange={onChange}
               placeholder='What would you like me to say?...'
-              className="inline-flex items-center justify-center rounded  text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 placeholder:italic outline-none"
-
             />
             <Button
               size='icon'
               type='submit'
               variant='secondary'
               disabled={isLoading || input.length === 0}
-              className='absolute right-1 top-1 h-9 w-12'
+              className='absolute right-1 top-1 h-9 w-12 ml-5'
             >
-              <SendHorizontalIcon className='h-5 w-5 text-custom-teal' />
+              <SendHorizontalIcon className='h-5 w-5 text-custom-teal-500' />
             </Button>
           </form>
           <div className='flex flex-row justify-around mt-10 max-w-lg'> 

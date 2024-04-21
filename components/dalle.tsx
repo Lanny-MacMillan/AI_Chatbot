@@ -39,8 +39,6 @@ export default function Dalle3() {
       setIsLoading(false)
     }
   }
-
-  const tempUrl = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-AugVlpmbhznLgzHpeepyR8Da/user-jbUto2flRwMPHW0RMvjaX5k3/img-kluK3wAbE3QywCgjUBW5txw7.png?st=2024-04-15T17%3A35%3A29Z&se=2024-04-15T19%3A35%3A29Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-04-15T08%3A15%3A41Z&ske=2024-04-16T08%3A15%3A41Z&sks=b&skv=2021-08-06&sig=9KCzBqOAyvMFruyxFyPrXu1JIHlFL1DfbYvpFdzQ95U%3D"
   
   return (
     <>
@@ -55,13 +53,12 @@ export default function Dalle3() {
                 name='message'
                 onChange={(e) => setPrompt(e.currentTarget.value)}
                 placeholder='What would you like to see?...'
-                className='inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[45px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 data-placeholder:customBlackItalic outline-none '
                 />
                 <Button
                   size='icon'
                   type='submit'
                   variant='secondary'
-                  // disabled={isLoading}
+                  disabled={isLoading}
                   className='absolute right-1 top-1 h-8 w-10'
                 >
                   <SendHorizontalIcon className='h-5 w-5 text-custom-teal-500' />
