@@ -1,23 +1,18 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { Input, Button } from '@/components/ui'
+import { Input } from '@/components/ui'
 import { useChat } from 'ai/react';
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import CopyToClipboard from '@/components/copy-to-clipboard'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { SendHorizontalIcon } from 'lucide-react'
 import PropagateLoader from "react-spinners/PropagateLoader";
-
+import { hoverClass, standardClass } from '@/public/constants';
 
 export default function Chat() {
   const ref = useRef<HTMLDivElement>(null)
   const [ aiActive, setAiActive ] = useState<boolean>(true);
   const [ hover, setHover ] = useState<boolean>(false);
-  // const [aiMood, setaiMood] = useState<string>({});
-
-  // option to have chat spoken by Ai or text
-  //  -pass in voices to be chosen by user if Ai spoken
-  // pass in Ai model to be used
 
 
   const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
@@ -40,14 +35,10 @@ export default function Chat() {
     ref.current.scrollTo(0, ref.current.scrollHeight)
   }, [messages])
 
-  const standardClass = 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-purple-100 text-secondary-foreground h-10 w-10'
-
-  const hoverClass = 'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-teal-100 text-secondary-foreground h-10 w-10' 
-
   return (
     <div className="container flex flex-col items-center justify-center">
       <motion.h1
-        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center xl:mt-4 xl:mb-4"
+        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center mt-4 mb-4"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0}}
@@ -57,7 +48,7 @@ export default function Chat() {
         </motion.h1>
         <div className="w-full max-w-lg shadow-2xl">
           <div
-            className='lg:h-[24rem] 2xl:h-[70vh] whitespace-nowrap rounded-md border overflow-auto p-4 bg-mauve3'
+            className='lg:h-[24rem] h-[70vh] whitespace-nowrap rounded-md border overflow-auto p-4 bg-mauve3'
             ref={ref}
           >
             {messages.map(m => (

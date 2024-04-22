@@ -1,9 +1,11 @@
 'use client'
 import { useState, useRef } from 'react'
 import toast from "react-hot-toast";
-import { Input, Button } from '@/components/ui'
+import { motion } from 'framer-motion'
+import { Input } from '@/components/ui'
 import { SendHorizontalIcon } from 'lucide-react'
 import Wavesurfer from './ui/wavesurfer/wavesurfer';
+import { hoverClass, standardClass } from '@/public/constants';
 
 export default function Speech() {
   const [input, setInput] = useState<string>('');
@@ -13,6 +15,7 @@ export default function Speech() {
   const [model, setModel] = useState<string>('tts-1');
   const [downloadAudio, setDownloadAudio] = useState<string>('false');
   const [pause, setPause] = useState<boolean>(false);
+  const [ hover, setHover ] = useState<boolean>(false);
 
   
 
@@ -24,6 +27,7 @@ export default function Speech() {
   const handleSubmitDownload = async (e: any) => {
     e.preventDefault();
     setAudio('')
+
     try {
       setIsLoading(true)
 
@@ -91,20 +95,42 @@ export default function Speech() {
 
 
   return (
-    <div className='flex bg-gradient-to-b from-[#ffffff] to-[#5be9b9]'>
-      <div className=" container flex h-screen w-screen flex-col items-center justify-around">
-        <h1 className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-customBlack pb-10 text-center">Text to Speech</h1>
+      <div className=" container flex w-screen flex-col items-center justify-around">
+      <motion.h1
+        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center mt-4 mb-4"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 20, opacity: 0}}
+        transition={{ type: "spring", bounce: .7 }}      >Text to Speech</motion.h1>
         <div className="w-full max-w-lg ">
 
-          {audio ? <Wavesurfer audio={audio} pause={pause} setPause={setPause} /> : <div style={{height: '15rem'}} />}
+        {audio ? (
+          <div className='mt-8'>
+            <Wavesurfer className='mt-8' audio={audio} pause={pause} setPause={setPause} />
+          </div>
+          ) : <div className='h-60 mt-8'/>}
           
-          <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative rounded-md w-full max-w-lg mt-10 shadow-2xl'>
+          <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative rounded-md w-full max-w-lg mt-5 shadow-2xl'>
             <Input
               name='message'
               onChange={onChange}
               placeholder='What would you like me to say?...'
             />
-            <Button
+            <motion.button
+              type='submit'
+              disabled={isLoading || input.length === 0}
+
+              className={ hover ? hoverClass : standardClass }
+              whileHover={{ scale: 1.4 }}
+              transition={{ tpe: "spring", stiffness: 300 }}
+              whileTap={{ scale: 1.7 }}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              <SendHorizontalIcon className={ hover ? 'h-5 w-5 text-custom-purple-500'  : 'h-5 w-5 text-custom-teal-500'}/>
+            </motion.button>
+
+            {/* <Button
               size='icon'
               type='submit'
               variant='secondary'
@@ -112,7 +138,7 @@ export default function Speech() {
               className='absolute right-1 top-1 h-9 w-12 ml-5'
             >
               <SendHorizontalIcon className='h-5 w-5 text-custom-teal-500' />
-            </Button>
+            </Button> */}
           </form>
           <div className='flex flex-row justify-around mt-10 max-w-lg'> 
             <form className="max-w-sm mx-auto flex flex-row ">
@@ -158,8 +184,6 @@ export default function Speech() {
             </form>
           </div>         
         </div>
-
       </div>
-    </div>
   );
 }
