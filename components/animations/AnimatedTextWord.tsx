@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 
 
 const AnimatedTextWord = ({ text }: any) => {
-// This will split the text into an array of word 
-const words = text.split(" ");
+  // This will split the text into an array of word 
+  const words = text.split(" ");
 
   // Variants for Container of words.
   const container = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+      transition: {  staggerChildren: .12, delayChildren: 1 * i },
     }),
   };
 
-// Variants for each word.
+  // Variants for each word.
 
   const child = {
     visible: {
@@ -50,7 +50,7 @@ const words = text.split(" ");
           variants={child}
           key={index}
           style={{ marginRight: "5px" }}
-          className="text-7xl text-center font-customBlack"
+          className="text-5xl 2xl:text-7xl text-center font-customBlack 2xl:mt-40"
         >
           {word}
         </motion.span>
