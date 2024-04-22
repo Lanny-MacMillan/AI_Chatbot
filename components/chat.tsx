@@ -47,7 +47,7 @@ export default function Chat() {
   return (
     <div className="container flex flex-col items-center justify-center">
       <motion.h1
-        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center lg:mt-4 lg:mb-4"
+        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center xl:mt-4 xl:mb-4"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0}}
@@ -57,7 +57,7 @@ export default function Chat() {
         </motion.h1>
         <div className="w-full max-w-lg shadow-2xl">
           <div
-            className='lg:h-[27rem] 2xl:h-[80vh] whitespace-nowrap rounded-md border overflow-auto p-4 bg-mauve3'
+            className='lg:h-[24rem] 2xl:h-[70vh] whitespace-nowrap rounded-md border overflow-auto p-4 bg-mauve3'
             ref={ref}
           >
             {messages.map(m => (

@@ -50,7 +50,7 @@ const AnimatedTextWord = ({ text }: any) => {
           variants={child}
           key={index}
           style={{ marginRight: "5px" }}
-          className="text-5xl 2xl:text-7xl text-center font-customBlack 2xl:mt-40"
+          className="text-5xl text-center font-customBlack mt-40"
         >
           {word}
         </motion.span>
