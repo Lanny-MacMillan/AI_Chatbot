@@ -19,6 +19,12 @@ export default function Speech() {
 
   
 
+  // const standardClass =
+	// "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-purple-100 text-secondary-foreground h-10 w-10";
+
+  // const hoverClass =
+	// "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-teal-100 text-secondary-foreground h-10 w-10";
+
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setInput(newValue)
@@ -97,7 +103,7 @@ export default function Speech() {
   return (
       <div className=" container flex w-screen flex-col items-center justify-around">
       <motion.h1
-        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center mt-4 mb-4"
+        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-24"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 20, opacity: 0}}
@@ -105,12 +111,12 @@ export default function Speech() {
         <div className="w-full max-w-lg ">
 
         {audio ? (
-          <div className='mt-8'>
-            <Wavesurfer className='mt-8' audio={audio} pause={pause} setPause={setPause} />
+          <div className='lg:mt-16'>
+            <Wavesurfer className='lg:mt-24' audio={audio} pause={pause} setPause={setPause} />
           </div>
-          ) : <div className='h-60 mt-8'/>}
+          ) : <div className='h-60 lg:mt-24'/>}
           
-          <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative rounded-md w-full max-w-lg mt-5 shadow-2xl'>
+          <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative rounded-md w-full max-w-lg mt-24 shadow-2xl'>
             <Input
               name='message'
               onChange={onChange}
@@ -129,16 +135,6 @@ export default function Speech() {
             >
               <SendHorizontalIcon className={ hover ? 'h-5 w-5 text-custom-purple-500'  : 'h-5 w-5 text-custom-teal-500'}/>
             </motion.button>
-
-            {/* <Button
-              size='icon'
-              type='submit'
-              variant='secondary'
-              disabled={isLoading || input.length === 0}
-              className='absolute right-1 top-1 h-9 w-12 ml-5'
-            >
-              <SendHorizontalIcon className='h-5 w-5 text-custom-teal-500' />
-            </Button> */}
           </form>
           <div className='flex flex-row justify-around mt-10 max-w-lg'> 
             <form className="max-w-sm mx-auto flex flex-row ">

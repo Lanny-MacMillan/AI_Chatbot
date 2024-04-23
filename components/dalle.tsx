@@ -43,11 +43,12 @@ export default function Dalle3() {
     }
   }
   
+
   return (
     <>
       <div className="container flex flex-col items-center">
         <motion.div
-          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack text-center mt-4 mb-4 pb-3 leading-none"
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack text-center lg:mt-8 lg:mb-8 pb-3 leading-none"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0}}
@@ -80,7 +81,16 @@ export default function Dalle3() {
           </div>
           
           <div className="flex items-center justify-center align-center mt-5">
-            {isLoading ? <BounceLoader size='130px' color="rgba(0, 218, 248, 1)" /> : <Image src={dalleResult ? dalleResult : exampleImage} width={400} height={400} alt={dalleResult}/>
+          {isLoading
+            ?
+              <BounceLoader
+                size='130px' color="#842b94" />
+            :
+              <Image
+              src={dalleResult ? dalleResult : exampleImage}
+              width={400}
+              height={400}
+              alt={dalleResult} />
               }
           </div>
 
