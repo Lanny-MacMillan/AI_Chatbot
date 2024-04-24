@@ -3,6 +3,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { motion } from 'framer-motion'
 import { Input, Button } from '@/components/ui'
+import * as Dialog from '@radix-ui/react-dialog';
+import { Cross2Icon } from '@radix-ui/react-icons';
 import PicturePreview from "@/components/ui/PicturePreview";
 import { SendHorizontalIcon, CircleX } from 'lucide-react'
 import Wavesurfer from './ui/wavesurfer/wavesurfer';
@@ -28,11 +30,14 @@ export default function Vision() {
     const newValue = e.currentTarget.value;
     setPrompt(newValue)
   }
-  console.log("images", { images })
   
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const filesArray = Array.from(e.target.files);
+      if (filesArray.length > 2) {
+        setError('You are only able to select up to 2 images. Please try again.')
+        return
+      }
       setImages(filesArray);
     }
   };
@@ -115,6 +120,71 @@ export default function Vision() {
     }
   };
 
+  const Modal = () => {
+    return (
+      <Dialog.Root>
+        <Dialog.Trigger asChild>
+          <CircleX
+            className="absolute right-0 top-0 text-red-600"
+          />
+        </Dialog.Trigger>
+        
+        <Dialog.Portal >
+            <Dialog.Overlay
+              className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0" />
+          <Dialog.Content
+            style={{
+              border: '4px solid',
+              borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
+            }}
+            className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] bg-custom-purple-100 p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+            <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
+              {images.length > 1 ? 'Remove Images' : 'Remove Image'}
+            </Dialog.Title>
+            <Dialog.Description className="text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal">
+            {images.length > 1 ? 'Remove your images and start the process over?' : 'Remove your image and start the process over?'}
+
+              
+            </Dialog.Description>
+
+            <div className="mt-[25px] flex justify-end">
+              <Dialog.Close asChild>
+                  <motion.button
+                    disabled={isLoading}
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ type: "spring", stiffness: 100 }}
+                    whileTap={{ scale: 1.4 }}
+                    className="text-mauve11 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                  Cancel
+                </motion.button>
+              </Dialog.Close>
+              <Dialog.Close asChild>
+                  <motion.button
+                    disabled={isLoading}
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ type: "spring", stiffness: 100 }}
+                    whileTap={{ scale: 1.4 }}
+                    onClick={() => setImages([])}
+                    className="text-red-600 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                  >
+                  Delete
+                </motion.button>
+              </Dialog.Close>
+            </div>
+            <Dialog.Close asChild>
+              <button
+                className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+                aria-label="Close"
+              >
+                <Cross2Icon />
+              </button>
+            </Dialog.Close>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
+    )
+  }
+
   const renderSubmitType = (
     <>
       {manualPrompt === 'manual' ? (
@@ -130,7 +200,7 @@ export default function Vision() {
             disabled={isLoading}
             className={ hover ? hoverClass : standardClass }
             whileHover={{ scale: 1.4 }}
-            transition={{ tpe: "spring", stiffness: 300 }}
+            transition={{ type: "spring", stiffness: 300 }}
             whileTap={{ scale: 1.7 }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
@@ -186,8 +256,8 @@ export default function Vision() {
             <>
               <div className="w-full max-w-lg">
               {renderSubmitType}
-                <div className='flex flex-row justify-around mt-5'> 
-                  <form className="max-w-sm mx-auto flex flex-row ">
+                <div className='flex flex-row mt-5'> 
+                  <form className="max-w-sm mx-auto flex flex-row mr-5">
                     <select
                         onChange={(e) => {
                         setVoice(e.target.value)
@@ -204,7 +274,7 @@ export default function Vision() {
                       <option value="shimmer">Shimmer</option>
                     </select>
                   </form>
-                  <form className="max-w-sm mx-auto flex flex-row ">
+                  <form className="max-w-sm mx-auto flex flex-row">
                     <select
                         onChange={(e) => {
                           setModel(e.target.value)
@@ -216,7 +286,7 @@ export default function Vision() {
                       <option value="tts-1-hd">tts-1-hd</option>
                     </select>
                   </form>
-                  <form className="max-w-sm mx-auto flex flex-row ">
+                  <form className="max-w-sm mx-auto flex flex-row ml-5">
                     <select
                       onChange={(e) => {
                         handlePrompt(e.target.value)
@@ -231,7 +301,6 @@ export default function Vision() {
                       <option value="Ai thoughts">Ai thoughts</option>
                     </select>
                   </form>
-                  
                 </div>
                 {manualPrompt != 'manual' && error.length != 0  && <p className="text-xs text-red-600 mt-10 font-extrabold">{error}</p>}   
                 {isLoading && manualPrompt != 'manual' &&(
@@ -261,24 +330,15 @@ export default function Vision() {
 
       </div>
         <h2 className="text-l font-semibold text-custom-purple-500">
-        Submit your image(s) for Ai analysis and receive valuable insights!
+        Submit up to 2 images for Ai analysis and receive valuable insights!
           </h2>
           {images.length != 0 && (
-            <>
-            <div className="relative border-2 border-solid border-red-600 rounded-xl">
+            <div className="flex flex-col rounded-xl overflow-auto">
+              <div className="relative border-2 border-solid border-red-600 rounded-xl">
                 <PicturePreview images={images} />
-                <CircleX
-                  className="absolute right-0 top-0 text-red-600"
-                  onClick={() => setImages([])}
-                />
-
-                {/* <button
-
-                >
-                  x
-                </button> */}
+                <Modal />
+              </div>
             </div>
-            </>
           )}
 
 
