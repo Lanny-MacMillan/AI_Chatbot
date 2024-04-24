@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { motion } from 'framer-motion'
 import { Input, Button } from '@/components/ui'
 import PicturePreview from "@/components/ui/PicturePreview";
-import { SendHorizontalIcon } from 'lucide-react'
+import { SendHorizontalIcon, CircleX } from 'lucide-react'
 import Wavesurfer from './ui/wavesurfer/wavesurfer';
 import { sillyPrompt, fashionPrompt, seriousPrompt, aiThoughts } from "@/public/constants";
 import PropagateLoader from "react-spinners/PropagateLoader";
@@ -266,13 +266,17 @@ export default function Vision() {
           {images.length != 0 && (
             <>
             <div className="relative border-2 border-solid border-red-600 rounded-xl">
-              <PicturePreview images={images} />
-                <button
+                <PicturePreview images={images} />
+                <CircleX
+                  className="absolute right-0 top-0 text-red-600"
                   onClick={() => setImages([])}
-                  className="absolute right-0 top-0 border-2 border-solid border-red-600 rounded-full p-2 text-red-600 font-extrabold bg-white"
+                />
+
+                {/* <button
+
                 >
                   x
-                </button>
+                </button> */}
             </div>
             </>
           )}
