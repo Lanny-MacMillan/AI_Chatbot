@@ -1,7 +1,7 @@
 'use client'
 import { useState, useRef } from 'react'
 import toast from "react-hot-toast";
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Input } from '@/components/ui'
 import { SendHorizontalIcon } from 'lucide-react'
 import Wavesurfer from './ui/wavesurfer/wavesurfer';
@@ -17,13 +17,6 @@ export default function Speech() {
   const [pause, setPause] = useState<boolean>(false);
   const [ hover, setHover ] = useState<boolean>(false);
 
-  
-
-  // const standardClass =
-	// "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-purple-100 text-secondary-foreground h-10 w-10";
-
-  // const hoverClass =
-	// "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-teal-100 text-secondary-foreground h-10 w-10";
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
@@ -101,22 +94,45 @@ export default function Speech() {
 
 
   return (
+    <AnimatePresence>
+
       <div className=" container flex w-screen flex-col items-center justify-around">
-      <motion.h1
-        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-24"
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 20, opacity: 0}}
-        transition={{ type: "spring", bounce: .7 }}      >Text to Speech</motion.h1>
+      <div className="flex flex-row ">
+        <motion.p
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-16"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 20, opacity: 0}}
+          transition={{ type: "spring", bounce: .7 }}
+        >{'Text '}
+          </motion.p>
+          
+          <motion.p
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-16 mr-4 ml-4"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0}}
+            transition={{ delay: .5, type: "spring", bounce: .7 }}
+          > to
+          </motion.p>
+          <motion.p
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-purple-500 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-16"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0}}
+            transition={{ delay: 1, type: "spring", bounce: .7 }}
+          > Speech
+            </motion.p>
+      </div>
         <div className="w-full max-w-lg ">
 
         {audio ? (
           <div className='lg:mt-16'>
-            <Wavesurfer className='lg:mt-24' audio={audio} pause={pause} setPause={setPause} />
+            <Wavesurfer className='lg:mt-16' audio={audio} pause={pause} setPause={setPause} />
           </div>
-          ) : <div className='h-60 lg:mt-24'/>}
+          ) : <div className='h-44 lg:mt-16'/>}
           
-          <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative rounded-md w-full max-w-lg mt-24 shadow-2xl'>
+          <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative rounded-md w-full max-w-lg mt-16 shadow-2xl'>
             <Input
               name='message'
               onChange={onChange}
@@ -181,5 +197,7 @@ export default function Speech() {
           </div>         
         </div>
       </div>
+      </AnimatePresence>
+
   );
 }

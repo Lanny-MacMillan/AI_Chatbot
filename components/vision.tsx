@@ -39,6 +39,7 @@ export default function Vision() {
         return
       }
       setImages(filesArray);
+      setError('')
     }
   };
 
@@ -151,21 +152,19 @@ export default function Vision() {
               <Dialog.Close asChild>
                   <motion.button
                     disabled={isLoading}
-                    whileHover={{ scale: 1.2 }}
+                    whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 100 }}
-                    whileTap={{ scale: 1.4 }}
-                    className="text-mauve11 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                    className="text-mauve11 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-none focus:outline-none">
                   Cancel
                 </motion.button>
               </Dialog.Close>
               <Dialog.Close asChild>
                   <motion.button
                     disabled={isLoading}
-                    whileHover={{ scale: 1.2 }}
+                    whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 100 }}
-                    whileTap={{ scale: 1.4 }}
                     onClick={() => setImages([])}
-                    className="text-red-600 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                    className="text-red-600 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-none focus:outline-none"
                   >
                   Delete
                 </motion.button>
@@ -199,9 +198,9 @@ export default function Vision() {
             onClick={() => void assessImages()}
             disabled={isLoading}
             className={ hover ? hoverClass : standardClass }
-            whileHover={{ scale: 1.4 }}
+            whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300 }}
-            whileTap={{ scale: 1.7 }}
+            whileTap={{ scale: 1.3 }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             >
@@ -209,13 +208,16 @@ export default function Vision() {
           </motion.button>
         </div>
       ): (
-        <button
-          onClick={() => void assessImages()}
-          className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-2  w-64 text-custom-purple-600"
-          disabled={isLoading || images.length === 0}
+        <motion.button
+            onClick={() => void assessImages()}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            whileTap={{ scale: 1.3 }}
+            className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-2  w-64 text-custom-purple-600"
+            disabled={isLoading || images.length === 0}
         >
           {isLoading ? "Generating..." : "Assess"}
-        </button>
+        </motion.button>
 
       )}
     </>
