@@ -261,13 +261,24 @@ export default function Vision() {
 
       </div>
         <h2 className="text-l font-semibold text-custom-purple-500">
-        Submit your images for Ai analysis and receive valuable insights!
-        </h2>
-          <div>
-          {error && <p className="text-xs text-red-600 font-extrabold">{error}</p>}   
+        Submit your image(s) for Ai analysis and receive valuable insights!
+          </h2>
+          {images.length != 0 && (
+            <>
+            <div className="relative border-2 border-solid border-red-600 rounded-xl">
+              <PicturePreview images={images} />
+                <button
+                  onClick={() => setImages([])}
+                  className="absolute right-0 top-0 border-2 border-solid border-red-600 rounded-full p-2 text-red-600 font-extrabold bg-white"
+                >
+                  x
+                </button>
+            </div>
+            </>
+          )}
 
-            <PicturePreview images={images} />
-          </div>
+
+          {error && <p className="text-xs text-red-600 font-extrabold">{error}</p>}   
           {isLoading ? (
             <div className='mt-10'>
               <PropagateLoader color="#7427f7" />
@@ -278,14 +289,6 @@ export default function Vision() {
               </>
           )
           }
-          {images.length != 0 && (
-            <button
-              onClick={() => setImages([])}
-              className="border-2 border-dashed border-red-600 rounded-lg p-2 mt-2  w-32 text-red-600 font-extrabold"
-            >
-              Start Over
-            </button>
-          )}
         </div>
       </main>
       </>
