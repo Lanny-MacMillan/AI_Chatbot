@@ -36,15 +36,25 @@ export default function Chat() {
 
   return (
     <div className="container flex flex-col items-center justify-center">
-      <motion.h1
-        className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack text-center lg:mt-8 lg:mb-8"
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 20, opacity: 0}}
-        transition={{ type: "spring", bounce: .7 }}
-      >
-            Text Generation
-        </motion.h1>
+      <div className="flex flex-row ">
+        <motion.p
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 20, opacity: 0}}
+          transition={{ type: "spring", bounce: .7 }}
+        >Text
+          </motion.p>
+          
+          <motion.p
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8 ml-4 ml-4"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0}}
+            transition={{ delay: .5, type: "spring", bounce: .7 }}
+          > Generation
+          </motion.p>
+      </div>
         <div className="w-full max-w-lg">
           <div
             className='lg:h-[60vh] h-[70vh] whitespace-nowrap rounded-md overflow-auto p-4 bg-gradient-to-t from-mauve3 to-transparent'

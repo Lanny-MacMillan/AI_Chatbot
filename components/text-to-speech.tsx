@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Input } from '@/components/ui'
 import { SendHorizontalIcon } from 'lucide-react'
 import Wavesurfer from './ui/wavesurfer/wavesurfer';
-import { hoverClass, standardClass } from '@/public/constants';
 
 export default function Speech() {
   const [input, setInput] = useState<string>('');
@@ -17,7 +16,12 @@ export default function Speech() {
   const [pause, setPause] = useState<boolean>(false);
   const [ hover, setHover ] = useState<boolean>(false);
 
+  const standardClass =
+	"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-purple-100 text-secondary-foreground h-10 w-10";
 
+  const hoverClass =
+    "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 absolute right-1 top-1 h-9 w-12 bg-custom-teal-100 text-secondary-foreground h-10 w-10";
+  
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const newValue = e.currentTarget.value;
     setInput(newValue)
@@ -99,7 +103,7 @@ export default function Speech() {
       <div className=" container flex w-screen flex-col items-center justify-around">
       <div className="flex flex-row ">
         <motion.p
-          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-16"
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-6xl font-customBlack  text-center lg:mt-16 lg:mb-16"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0}}
@@ -108,7 +112,7 @@ export default function Speech() {
           </motion.p>
           
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-16 mr-4 ml-4"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-6xl font-customBlack  text-center lg:mt-16 lg:mb-16 mr-4 ml-4"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -116,7 +120,7 @@ export default function Speech() {
           > to
           </motion.p>
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-purple-500 inline-block text-transparent bg-clip-text lg:text-7xl font-customBlack  text-center lg:mt-16 lg:mb-16"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-purple-500 inline-block text-transparent bg-clip-text lg:text-6xl font-customBlack  text-center lg:mt-16 lg:mb-16"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}

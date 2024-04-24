@@ -324,10 +324,21 @@ export default function Vision() {
 
       <div className="container flex bg-transparent rounded-lg p-6 text-center flex flex-col">
       <div className="flex flex-col ">
-        <div className="flex flex-row justify-center ">
-          <h1 className="border-red-600 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-6xl font-customBlack pb-10 text-center lg:mt-8 ">
-            Vision Ai
-          </h1>
+        <div className="flex flex-row ">
+          <motion.p
+            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-6xl font-customBlack  text-center lg:mt-8 lg:mb-8"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0}}
+            transition={{ type: "spring", bounce: .7 }}
+          >Vision</motion.p>
+          <motion.p
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-6xl font-customBlack  text-center lg:mt-8 lg:mb-8 ml-4 ml-4"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0}}
+            transition={{ delay: .5, type: "spring", bounce: .7 }}
+          > Ai</motion.p>
         </div>
 
       </div>

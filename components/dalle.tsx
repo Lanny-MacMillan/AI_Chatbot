@@ -47,15 +47,25 @@ export default function Dalle3() {
   return (
     <>
       <div className="container flex flex-col items-center">
-        <motion.div
-          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack text-center lg:mt-8 lg:mb-8 pb-3 leading-none"
+        <div className="flex flex-row ">
+        <motion.p
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8 pb-3"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0}}
           transition={{ type: "spring", bounce: .7 }}
-        >Image Generation
-        </motion.div>
-
+        >Image
+          </motion.p>
+          
+          <motion.p
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8 ml-4 ml-4 pb-3"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0}}
+            transition={{ delay: .5, type: "spring", bounce: .7 }}
+          > Generation
+          </motion.p>
+        </div>
           <div className="flex mt-4 w-full max-w-lg justify-center">
             <form onSubmit={handleDalleSubmit} className='relative rounded-md w-[400px] max-w-lg shadow-2xl'>
               <Input
