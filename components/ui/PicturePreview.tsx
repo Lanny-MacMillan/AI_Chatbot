@@ -2,6 +2,7 @@ import React from "react";
 
 function PicturePreview({ images }: { images: File[] }) {
   if (images.length === 0) return null;
+
   return (
     <div className="flex flex-row justify-center">
       {images.map((image, index) => (
