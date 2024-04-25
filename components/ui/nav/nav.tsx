@@ -25,13 +25,13 @@ const components: { title: string; href: string; description: string }[] = [
     title: "Image Generator",
     href: "/image-generator",
     description:
-      "Generate or manipulate images with DALL·E from OpenAI",
+      "Generate images with DALL·E from OpenAI",
   },
   {
     title: "Open AI Vision",
     href: "/vision",
     description:
-      "Use GPT-4 to understand images.",
+      "Vision is best at answering general questions about what is present in the images.",
   },
   {
     title: "Text-to-Speech",
@@ -42,6 +42,15 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function NavigationMenuAi() {
   return (
+    <>
+      <div
+        style={{
+          borderWidth: 0,
+          borderBottom: '4px solid',
+          borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
+        }}
+      className="bg-custom-purple-200 p-2">
+
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
@@ -54,13 +63,12 @@ export function NavigationMenuAi() {
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                     href="/"
                   >
-                    {/* <Icons.logo className="h-6 w-6" /> */}
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      AI Chatbot
+                      Ai Toolbox
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                       Beautiful and simply designed components built with Radix UI and
-                      Tailwind CSS for this AI Chatbot.
+                      Tailwind CSS for this AI Toolbox.
                     </p>
                   </a>
                 </NavigationMenuLink>
@@ -91,7 +99,9 @@ export function NavigationMenuAi() {
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
-    </NavigationMenu>
+      </NavigationMenu>
+      </div>
+    </>
   )
 }
 
@@ -105,7 +115,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground bg-custom-purple-100",
             className
           )}
           {...props}

@@ -1,15 +1,19 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { Input, Button } from '@/components/ui'
+import { Input } from '@/components/ui'
 import { useChat } from 'ai/react';
-// import { ScrollArea } from '@/components/ui/scroll-area'
+import { motion } from 'framer-motion'
 import CopyToClipboard from '@/components/copy-to-clipboard'
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { SendHorizontalIcon } from 'lucide-react'
+import PropagateLoader from "react-spinners/PropagateLoader";
+import { hoverClass, standardClass } from '@/public/constants';
 
 export default function Chat() {
   const ref = useRef<HTMLDivElement>(null)
+  const [ aiActive, setAiActive ] = useState<boolean>(true);
+  const [ hover, setHover ] = useState<boolean>(false);
+
   const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
     initialMessages: [
       {
@@ -19,7 +23,11 @@ export default function Chat() {
       }
     ]
   });
-
+  const onSubmit = (e: any) => {
+    e.preventDefault();
+    handleSubmit(e);
+    setAiActive(false)
+  }
 
   useEffect(() => {
     if (ref.current === null) return
@@ -27,19 +35,38 @@ export default function Chat() {
   }, [messages])
 
   return (
-    <section className='text-zinc-700'>
-      <div className="container flex h-screen flex-col items-center justify-center bg-gradient-to-b from-[#ffffff] to-[#141c3a]">
-        <h1 className="text-2xl font-bold text-gray-600">
-            Text Generation
-        </h1>
-        <div className="mt-4 w-full max-w-lg">
-          {/* response container */}
+    <div className="container flex flex-col items-center justify-center">
+      <div className="flex flex-row ">
+        <motion.p
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 20, opacity: 0}}
+          transition={{ type: "spring", bounce: .7 }}
+        >Text
+          </motion.p>
+          
+          <motion.p
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8 ml-4 ml-4"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0}}
+            transition={{ delay: .5, type: "spring", bounce: .7 }}
+          > Generation
+          </motion.p>
+      </div>
+        <div className="w-full max-w-lg">
           <div
-            className=' h-[300px] whitespace-nowrap rounded-md border overflow-auto p-4 bg-[#ffffff]'
+            className='lg:h-[60vh] h-[70vh] whitespace-nowrap rounded-md overflow-auto p-4 bg-gradient-to-t from-mauve3 to-transparent'
             ref={ref}
           >
             {messages.map(m => (
-              <div key={m.id} className='mr-6 whitespace-pre-wrap '>
+              aiActive ? (
+                <div className="flex flex-col items-center justify-center h-full">
+                  <PropagateLoader color="#bc3ed3" />
+                </div>
+            ) : (
+                <div key={m.id} className='mr-6 whitespace-pre-wrap'>
                 {m.role === 'user' && (
                   <div className='mb-6 flex gap-3'>
                     <Avatar>
@@ -48,7 +75,7 @@ export default function Chat() {
                     </Avatar>
                     <div className='mt-1.5'>
                       <p className='font-semibold'>You</p>
-                      <div className='mt-1.5 text-sm text-zinc-500'>
+                      <div className='mt-1.5 text-sm text-violet11'>
                         {m.content}
                       </div>
                     </div>
@@ -56,7 +83,7 @@ export default function Chat() {
                 )}
 
                 {m.role === 'assistant' && (
-                  <div className='mb-6 flex gap-3'>
+                  <div className='mb-6 flex gap-3 '>
                     <Avatar>
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback className='bg-emerald-500 text-white'>
@@ -68,39 +95,40 @@ export default function Chat() {
                         <p className='font-semibold'>Bot</p>
                         <CopyToClipboard message={m} className='-mt-1' />
                       </div>
-                      <div className='mt-2 text-sm text-zinc-500'>
+                      <div className='mt-2 text-sm text-violet11'>
                         {m.content}
                       </div>
                     </div>
                   </div>
                 )}
               </div>
+
+              )
             ))}
           </div>
 
 
-          {/* input form */}
-          <form onSubmit={handleSubmit} className='relative'>
+        </div>
+        <form onSubmit={onSubmit} className='relative rounded-md w-full max-w-lg lg:mt-4 shadow-2xl'>
             <Input
               name='message'
               value={input}
               onChange={handleInputChange}
               placeholder='Ask me anything...'
-              className='pr-12 placeholder:italic placeholder:text-zinc-600/75 focus-visible:ring-zinc-500'
-            />
-            <Button
-              size='icon'
-              type='submit'
-              variant='secondary'
-              disabled={isLoading}
-              className='absolute right-1 top-1 h-8 w-10'
-            >
-              <SendHorizontalIcon className='h-5 w-5 text-emerald-500' />
-            </Button>
+              />
+        <motion.button
+          type='submit'
+          disabled={isLoading}
+          className={ hover ? hoverClass : standardClass }
+          whileHover={{ scale: 1.4 }}
+          transition={{ tpe: "spring", stiffness: 300 }}
+          whileTap={{ scale: 1.7 }}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          >
+              <SendHorizontalIcon className={ hover ? 'h-5 w-5 text-custom-purple-500'  : 'h-5 w-5 text-custom-teal-500'}/>
+            </motion.button>
           </form>
-        </div>
-
       </div>
-    </section>
   )
 }

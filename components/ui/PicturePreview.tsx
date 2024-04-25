@@ -2,6 +2,7 @@ import React from "react";
 
 function PicturePreview({ images }: { images: File[] }) {
   if (images.length === 0) return null;
+
   return (
     <div className="flex flex-row justify-center">
       {images.map((image, index) => (
@@ -9,7 +10,7 @@ function PicturePreview({ images }: { images: File[] }) {
           key={index}
           src={URL.createObjectURL(image)}
           alt={`preview-${index}`}
-          className="h-40 w-40 object-cover rounded-lg mr-2"
+          className="h-80 w-80 object-cover rounded-lg"
         />
       ))}
     </div>
