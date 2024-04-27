@@ -22,7 +22,7 @@ export default function Home() {
             transition={{ type: "spring", bounce: .7 }}
             className="">
             <h1 id='text'
-              className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-customBlack mt-24 mb-16">Ai Toolbox</h1>
+              className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-customBlack text-center mt-24 xl:mt-44 mb-16">Ai Toolbox</h1>
           </motion.div>
             <div className='flex flex-col'>
               <AnimatedTextWord text="Transform  Your  Approach  With " />
@@ -32,7 +32,7 @@ export default function Home() {
                 exit={{ y: 20, opacity: 0}}
                 transition={{ type: "spring", bounce: .7, delay: 2.3 }}
                 id='text'
-                className='text-5xl text-center font-customBlack'
+                className='text-xl lg:text-5xl text-center font-customBlack'
               >
                 <motion.span
                   initial={{ y: -20, opacity: 0 }}

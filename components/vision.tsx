@@ -138,7 +138,7 @@ export default function Vision() {
               border: '4px solid',
               borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
             }}
-            className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] bg-custom-purple-100 p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+            className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[80vw] max-w-[420px] translate-x-[-50%] translate-y-[-50%] bg-custom-purple-100 p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
             <Dialog.Title className="text-mauve12 m-0 text-[17px] font-medium">
               {images.length > 1 ? 'Remove Images' : 'Remove Image'}
             </Dialog.Title>
@@ -326,14 +326,14 @@ export default function Vision() {
       <div className="flex flex-col ">
         <div className="flex flex-row ">
           <motion.p
-            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-6xl font-customBlack  text-center lg:mt-8 lg:mb-8"
+            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl lg:text-5xl  font-customBlack  text-center mt-8 mb-8"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
             transition={{ type: "spring", bounce: .7 }}
           >Vision</motion.p>
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-6xl font-customBlack  text-center lg:mt-8 lg:mb-8 ml-4 ml-4"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl lg:text-5xl  font-customBlack  text-center mt-8 mb-8 ml-4"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
