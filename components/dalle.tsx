@@ -49,7 +49,7 @@ export default function Dalle3() {
       <div className="container flex flex-col items-center">
         <div className="flex flex-row ">
         <motion.p
-          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8 pb-3"
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-8 mb-8 pb-3"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0}}
@@ -58,7 +58,7 @@ export default function Dalle3() {
           </motion.p>
           
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text lg:text-5xl font-customBlack  text-center lg:mt-8 lg:mb-8 ml-4 ml-4 pb-3"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-8 mb-8 ml-4 ml-4 pb-3"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -90,7 +90,7 @@ export default function Dalle3() {
             </form>
           </div>
           
-          <div className="flex items-center justify-center align-center mt-5">
+          <div className="flex items-center justify-center align-center mt-16">
           {isLoading
             ?
               <BounceLoader
