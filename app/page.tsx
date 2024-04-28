@@ -1,8 +1,8 @@
 "use client"
-import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NavigationMenuAi } from '@/components/ui/nav/nav'
 import AnimatedTextWord from '@/components/animations/AnimatedTextWord'
+import Bounce from '@/components/animations/Bounce'
 
 export const runtime = 'edge'
 
@@ -14,8 +14,9 @@ export default function Home() {
     <AnimatePresence>
       <NavigationMenuAi/>
       <section className='text-zinc-700'>
-        <div className="container mx-auto flex flex-col">
-          <motion.div
+          <div className="container mx-auto flex flex-col">
+            <Bounce/>
+          {/* <motion.div
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -23,7 +24,7 @@ export default function Home() {
             className="">
             <h1 id='text'
               className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-customBlack text-center mt-24 xl:mt-44 mb-16">Ai Toolbox</h1>
-          </motion.div>
+          </motion.div> */}
             <div className='flex flex-col'>
               <AnimatedTextWord text="Transform  Your  Approach  With " />
               <motion.h1
