@@ -10,7 +10,7 @@ function PicturePreview({ images }: { images: File[] }) {
           key={index}
           src={URL.createObjectURL(image)}
           alt={`preview-${index}`}
-          className="h-80 w-80 object-cover rounded-lg"
+          className="h-40 w-40 md:h-80 md:w-80 object-cover rounded-lg"
         />
       ))}
     </div>
