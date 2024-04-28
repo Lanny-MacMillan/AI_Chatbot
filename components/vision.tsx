@@ -2,7 +2,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { motion } from 'framer-motion'
-import { Input, Button } from '@/components/ui'
+import { Input, SelectPrompt, SelectModel, SelectVoice } from '@/components/ui';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import PicturePreview from "@/components/ui/PicturePreview";
@@ -44,7 +44,6 @@ export default function Vision() {
   };
 
   const handlePrompt = (choice: string) => {
-    console.log('choice',choice)
     switch (choice) {
       case 'Ai thoughts':
         setPrompt(aiThoughts)
@@ -103,7 +102,6 @@ export default function Vision() {
       if (!response.ok) throw new Error("Error generating audio");
 
       toast.success("Audio generated successfully!");
-      console.log("RESPONSE", { response })
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
       setAudio(downloadUrl);
@@ -121,6 +119,11 @@ export default function Vision() {
     }
   };
 
+  const handleClick = () => {
+    setImages([])
+    setAudio('')
+  }
+  
   const Modal = () => {
     return (
       <Dialog.Root>
@@ -132,7 +135,7 @@ export default function Vision() {
         
         <Dialog.Portal >
             <Dialog.Overlay
-              className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0" />
+              className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0 " />
           <Dialog.Content
             style={{
               border: '4px solid',
@@ -163,7 +166,7 @@ export default function Vision() {
                     disabled={isLoading}
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 100 }}
-                    onClick={() => setImages([])}
+                    onClick={handleClick}
                     className="text-red-600 hover:bg-green5 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-none focus:outline-none"
                   >
                   Delete
@@ -230,7 +233,7 @@ export default function Vision() {
         {images.length === 0 ? (
           <>
             <label className="cursor-pointer">
-              <div className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-2  w-64">
+              <div className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-16  w-64">
                 <p className="text-lg text-custom-purple-600">Upload Image(s)</p>
                   <input
                     type="file"
@@ -245,7 +248,7 @@ export default function Vision() {
             </label>
             {images.length === 0 && (
               <>
-                <p className="text-xs text-custom-magenta-400 mt-2">
+                <p className="text-xs text-custom-magenta-400 mt-16">
                   You need to upload an image to use Vision.
                 </p>
                 <p className="text-xs text-custom-magenta-400 mt-2">
@@ -257,53 +260,12 @@ export default function Vision() {
         ) : (
             <>
               <div className="w-full max-w-lg">
-              {renderSubmitType}
-                <div className='flex flex-row mt-5'> 
-                  <form className="max-w-sm mx-auto flex flex-row mr-5">
-                    <select
-                        onChange={(e) => {
-                        setVoice(e.target.value)
-                        }}
-                        className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-                        defaultValue={'Choose a voice'}
-                      >
-                      <option value="alloy" >Choose a voice</option>
-                      <option value="alloy">Alloy</option>
-                      <option value="echo">Echo</option>
-                      <option value="fable">Fable</option>
-                      <option value="onyx">Onyx</option>
-                      <option value="nova">Nova</option>
-                      <option value="shimmer">Shimmer</option>
-                    </select>
-                  </form>
-                  <form className="max-w-sm mx-auto flex flex-row">
-                    <select
-                        onChange={(e) => {
-                          setModel(e.target.value)
-                        }}
-                        className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-                        defaultValue={'Choose a Model'}>
-                      <option value="tts-1">Choose a model</option>
-                      <option value="tts-1">tts-1</option>
-                      <option value="tts-1-hd">tts-1-hd</option>
-                    </select>
-                  </form>
-                  <form className="max-w-sm mx-auto flex flex-row ml-5">
-                    <select
-                      onChange={(e) => {
-                        handlePrompt(e.target.value)
-                      }}
-                        className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-                        defaultValue={'Prompt'}>
-                      <option value="Ai thoughts">Prompts</option>
-                      <option value="roast">silly roast</option>
-                      <option value="fashion advice">funny fashion advice</option>
-                      <option value="serious thoughts">serious thoughts</option>
-                      <option value="manual">manual</option>
-                      <option value="Ai thoughts">Ai thoughts</option>
-                    </select>
-                  </form>
-                </div>
+                  {renderSubmitType}
+                  <div className=" flex flex-row justify-between mt-8"> 
+                    <SelectVoice setVoice={setVoice} />
+                    <SelectModel setModel={setModel} />
+                    <SelectPrompt handlePrompt={handlePrompt} /> 
+                  </div>    
                 {manualPrompt != 'manual' && error.length != 0  && <p className="text-xs text-red-600 mt-10 font-extrabold">{error}</p>}   
                 {isLoading && manualPrompt != 'manual' &&(
                       <div className='mt-10'>
@@ -314,7 +276,13 @@ export default function Vision() {
             </>
         )}
       </div>
-    ) : <Wavesurfer audio={audio} pause={pause} setPause={setPause} /> }
+      ) : (
+          <div className="z-0 mt-10">
+            <Wavesurfer audio={audio} pause={pause} setPause={setPause} />
+          </div>
+      )
+      }
+
     </>
   )
 
@@ -343,10 +311,10 @@ export default function Vision() {
 
       </div>
         <h2 className="text-l font-semibold text-custom-purple-500">
-        Submit up to 2 images for Ai analysis and receive valuable insights!
-          </h2>
+          Submit up to 2 images for Ai analysis and receive valuable insights!
+        </h2>
           {images.length != 0 && (
-            <div className="flex flex-col rounded-xl overflow-auto">
+            <div className="flex flex-col rounded-xl overflow-auto mt-16">
               <div className="relative border-2 border-solid border-red-600 rounded-xl">
                 <PicturePreview images={images} />
                 <Modal />
@@ -364,7 +332,7 @@ export default function Vision() {
               <>
                 {renderAudioAndSelect}
               </>
-          )
+            )
           }
         </div>
       </main>

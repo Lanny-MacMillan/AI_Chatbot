@@ -54,4 +54,4 @@ const SelectItem = React.forwardRef(({ children, className, ...props }: any, for
   );
 });
 
-export default SelectAudio;
+export { SelectAudio };

@@ -58,4 +58,4 @@ const SelectItem = React.forwardRef(({ children, className, ...props }: any, for
   );
 });
 
-export default SelectVoice;
+export { SelectVoice };

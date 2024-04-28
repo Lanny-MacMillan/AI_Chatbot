@@ -1,15 +1,10 @@
 'use client'
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import toast from "react-hot-toast";
 import { motion, AnimatePresence } from 'framer-motion'
-import { Input } from '@/components/ui'
-import { Option, SendHorizontalIcon } from 'lucide-react'
+import { SendHorizontalIcon } from 'lucide-react'
 import Wavesurfer from './ui/wavesurfer/wavesurfer';
-import Select from 'react-select'
-import AiSelect from './ui/aiSelect'
-import VoiceSelect from './ui/voiceSelect'
-import ModelSelect from './ui/modelSelect'
-import AudioSelect from './ui/audioSelect'
+import { Input, SelectAudio, SelectModel, SelectVoice } from '@/components/ui';
 
 export default function Speech() {
   const [input, setInput] = useState<string>('');
@@ -54,7 +49,6 @@ export default function Speech() {
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
       
-      // // creates file to download
       const link = document.createElement("a");
       link.href = downloadUrl;
       link.setAttribute("download", "vision.mp3");
@@ -99,7 +93,6 @@ export default function Speech() {
       setIsLoading(false)
     }
   }
-  console.log("voice", voice)
 
   return (
     <AnimatePresence>
@@ -161,9 +154,9 @@ export default function Speech() {
             </motion.button>
           </form>
           <div className=" flex flex-row justify-between mt-8"> 
-              <VoiceSelect setVoice={setVoice} />
-              <ModelSelect setModel={setModel} />
-              <AudioSelect setDownloadAudio={setDownloadAudio} /> 
+              <SelectVoice setVoice={setVoice} />
+              <SelectModel setModel={setModel} />
+              <SelectAudio setDownloadAudio={setDownloadAudio} /> 
           </div>         
         </div>
       </div>

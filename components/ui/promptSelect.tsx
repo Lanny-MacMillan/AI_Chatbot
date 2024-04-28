@@ -3,27 +3,13 @@ import * as Select from '@radix-ui/react-select';
 import classnames from 'classnames';
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
 
-const SelectDemo = ({
-  placeholder,
-  itemOne,
-  itemOneValue,
-  itemTwo,
-  itemTwoValue,
-  itemThree,
-  itemThreeValue,
-  itemFour,
-  itemFourValue,
-  itemFive,
-  itemFiveValue,
-  itemSix,
-  itemSixValue
-  }: any) => (
-  <Select.Root>
+const SelectPrompt = ({ handlePrompt }: any) => (
+  <Select.Root onValueChange={(prompt)=>{handlePrompt(prompt)}}>
     <Select.Trigger
-      className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none"
-      aria-label="options"
+      className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white text-violet11 shadow-[0_2px_10px] shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9 outline-none w-[110px] lg:w-[145px]"
+      aria-label="Prompts"
     >
-      <Select.Value placeholder={placeholder} />
+      <Select.Value placeholder="Select Prompt" />
       <Select.Icon className="text-violet11">
         <ChevronDownIcon />
       </Select.Icon>
@@ -36,23 +22,21 @@ const SelectDemo = ({
         <Select.Viewport className="p-[5px]">
           <Select.Group>
             <Select.Label className="px-[25px] text-xs leading-[25px] text-mauve11">
-              Voice
+              Select Prompt
             </Select.Label>
-            <SelectItem value={itemOneValue}>{itemOne}</SelectItem>
-            <SelectItem value={itemTwoValue}>{itemTwo}</SelectItem>
-            <SelectItem value={itemThreeValue}>{itemThree}</SelectItem>
-            <SelectItem value={itemFourValue}>{itemFour}</SelectItem>
-            <SelectItem value={itemFiveValue}>{itemFive}</SelectItem>
-            <SelectItem value={itemSixValue}>{itemSix}</SelectItem>
+            <SelectItem value="roast">Silly Roast</SelectItem>
+            <SelectItem value="fashion advice">Funny Fashion Advice</SelectItem>
+            <SelectItem value="serious thoughts">Serious Thoughts</SelectItem>
+            <SelectItem value="manual">manual</SelectItem>
+            <SelectItem value="Ai thoughts">Ai thoughts</SelectItem>
           </Select.Group>
-
         </Select.Viewport>
         <Select.ScrollDownButton className="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">
           <ChevronDownIcon />
         </Select.ScrollDownButton>
       </Select.Content>
     </Select.Portal>
-  </Select.Root>
+    </Select.Root>
 );
 
 const SelectItem = React.forwardRef(({ children, className, ...props }: any, forwardedRef) => {
@@ -73,4 +57,4 @@ const SelectItem = React.forwardRef(({ children, className, ...props }: any, for
   );
 });
 
-export default SelectDemo;
+export { SelectPrompt };
