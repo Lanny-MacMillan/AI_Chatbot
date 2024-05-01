@@ -16,15 +16,6 @@ export default function Home() {
       <section className='text-zinc-700'>
           <div className="container mx-auto flex flex-col z-10 " >
             <Bounce/>
-          {/* <motion.div
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0}}
-            transition={{ type: "spring", bounce: .7 }}
-            className="">
-            <h1 id='text'
-              className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-customBlack text-center mt-24 xl:mt-44 mb-16">Ai Toolbox</h1>
-          </motion.div> */}
             <div className='flex flex-col z-10'>
               <AnimatedTextWord text="Transform  Your  Approach  With " />
               <motion.h1

@@ -173,8 +173,38 @@
 	/* background: #191b28; */
 	/* box-shadow: inset 11px 11px 22px #0a0b10, inset -11px -11px 22px #282b40; */
 }
+
 .text {
 	font-family: "Montserrat Alternates", sans-serif;
 	font-weight: 800;
 	font-style: italic;
 }
+
+#steel {
+	color: #000;
+  border-radius: 4px;
+  background: linear-gradient(45deg,#999 5%, #fff 10%, #ccc 30%, #ddd 50%,#ccc 70%, #fff 80%,#999 95%);
+	border: 3px solid #0f0f0f30;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around; 
+	align-items: center;
+
+}
+
+#rivet{
+	height: 15px;
+	width: 15px;
+	background: radial-gradient(#fff, #ccc, #999, #0f0f0f60);
+	border-radius: 100%;
+}
+/* 
+#post{
+	width: 30px;
+	height: 600px;
+	background: linear-gradient(45deg,#999 5%, #fff 10%, #ccc 30%, #ddd 50%,#ccc 70%, #fff 80%,#999 95%);
+	border: 3px solid #0f0f0f30;
+	position: absolute;
+	top: 0;
+	z-index: 0;
+} */
