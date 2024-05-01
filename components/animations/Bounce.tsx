@@ -5,11 +5,10 @@ import { useGSAP } from '@gsap/react'
 
 export default function Bounce() {
   const boxRef = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
   const platformRef = useRef<HTMLDivElement>(null);
   
   useGSAP(() => {
-    // drop Title to bottom
+    // drop Title to bottom and bounce
     gsap.to([boxRef.current], {
       y: 645, 
       duration: 2,
@@ -27,13 +26,13 @@ export default function Bounce() {
       ease: "ease"
     }); 
 
-    // platform drop out of screen
-    gsap.to([platformRef.current], {
-      y: 645, 
-      delay: 0,
-      repeat: 0,
-      ease: "ease"
-    }); 
+    // platform drop out of screen view
+    // gsap.to([platformRef.current], {
+    //   y: 645, 
+    //   delay: 0,
+    //   repeat: 0,
+    //   // ease: "ease"
+    // }); 
 
     // platform lift title back up to its position
     gsap.to([platformRef.current], {
@@ -50,31 +49,16 @@ export default function Bounce() {
       duration: 5,
       delay: 13,
       repeat: 0,
+      opacity: 1,
       ease: "ease"
     }); 
 
-    // gsap.to([lineRef.current], {
-    //   y: -645, // get to fall on bottom of screen
-    //   duration: 6,
-    //   delay: 14,
-    //   repeat: 0,
-    //   ease: "easeOut"
-    //   // ease: "bounce.out"
-    // }); 
   }, []);
 
 
   return (
     // div will run framer motion drop, then 5 second in will run gsap anim to drop to bottom
     <div className="relative">
-      {/* <motion.div
-        ref={lineRef}
-        initial={{ y: -900, opacity: 1 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -600, opacity: 0}}
-        transition={{ delay: 10, duration: 3 }}
-        className="w-0 border-2 border-custom-purple-600 h-[82vh] absolute inset-x-44 xl:inset-x-52 z-0 "
-        /> */}
       <motion.div
         ref={boxRef}
         initial={{ y: -100, opacity: 0 }}
@@ -91,18 +75,9 @@ export default function Bounce() {
       <motion.div
         ref={platformRef}
         className="w-[100%] h-[3vh] bg-custom-purple-600 border-2 border-black absolute bottom-12 xl:bottom-9"
-        initial={{ y: 600, opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ y: 645, opacity: 1 }}
+        // animate={{ opacity: 1 }}
         />
-      {/* <motion.div
-        ref={platformRef}
-        initial={{ y: 600, opacity: 1 }}
-        animate={{ y: -75, opacity: 1 }}
-        exit={{ y: -600, opacity: 0}}
-        transition={{ delay: 7, duration: 5, type: "ease" }}
-        className="w-[100%] h-[3vh] bg-custom-purple-600 border-2 border-black absolute"
-        /> */}
-      
     </div>
   );
 }

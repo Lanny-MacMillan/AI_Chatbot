@@ -10,7 +10,7 @@ export default function Home() {
   // custom SVG below
 
   return (
-    <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9] h-screen max-h-screen' >
+    <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9] h-screen max-h-screen overflow-hidden' >
     <AnimatePresence>
       <NavigationMenuAi/>
       <section className='text-zinc-700'>
