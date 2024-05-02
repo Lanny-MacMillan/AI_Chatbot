@@ -185,11 +185,16 @@
   border-radius: 4px;
   background: linear-gradient(45deg,#999 5%, #fff 10%, #ccc 30%, #ddd 50%,#ccc 70%, #fff 80%,#999 95%);
 	border: 3px solid #0f0f0f30;
+	position: relative;
+	z-index: 100;
+}
+
+#innerPlatform{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around; 
 	align-items: center;
-
+	height: 100%;
 }
 
 #rivet{
@@ -198,13 +203,32 @@
 	background: radial-gradient(#fff, #ccc, #999, #0f0f0f60);
 	border-radius: 100%;
 }
-/* 
-#post{
-	width: 30px;
-	height: 600px;
+
+#base{
+	width: 140px;
+	height: 20px;
 	background: linear-gradient(45deg,#999 5%, #fff 10%, #ccc 30%, #ddd 50%,#ccc 70%, #fff 80%,#999 95%);
-	border: 3px solid #0f0f0f30;
+	border-left: 3px solid #0f0f0f30;
+	border-right: 3px solid #0f0f0f30;
 	position: absolute;
-	top: 0;
+	bottom: 70;
+	margin-top: 3px;
+	right: 30%;
 	z-index: 0;
-} */
+	border-radius: 0 0 100% 100%;
+}
+
+#knuckle{
+	width: 80px;
+	height: 20px;
+	background: linear-gradient(45deg,#999 5%, #fff 10%, #ccc 30%, #ddd 50%,#ccc 70%, #fff 80%,#999 95%);
+	border-left: 3px solid #0f0f0f30;
+	border-right: 3px solid #0f0f0f30;
+	position: absolute;
+	bottom: 70;
+	margin-top: 21px;
+	right: 39%;
+	z-index: 0;
+	border-radius: 0 0 100% 100%;
+}
+

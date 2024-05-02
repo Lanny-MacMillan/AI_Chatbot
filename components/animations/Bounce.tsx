@@ -29,24 +29,24 @@ export default function Bounce() {
       ease: "ease"
     }); 
 
-    // platform lift title back up to its position
-    gsap.to([platformRef.current], {
-      y: 0, 
-      duration: 5,
-      delay: 12,
-      repeat: 0,
-      ease: "ease"
-    }); 
+  //   // platform lift title back up to its position
+  //   gsap.to([platformRef.current], {
+  //     y: 0, 
+  //     duration: 5,
+  //     delay: 12,
+  //     repeat: 0,
+  //     ease: "ease"
+  //   }); 
 
-    // platform exit right
-    gsap.to([platformRef.current], {
-      x: 1000, 
-      duration: 5,
-      delay: 18,
-      repeat: 0,
-      opacity: 1,
-      ease: "ease"
-    }); 
+  //   // platform exit right
+  //   gsap.to([platformRef.current], {
+  //     x: 1000, 
+  //     duration: 5,
+  //     delay: 18,
+  //     repeat: 0,
+  //     opacity: 1,
+  //     ease: "ease"
+  //   }); 
 
   }, []);
 
@@ -70,13 +70,17 @@ export default function Bounce() {
         ref={platformRef}
         id='steel'
         className="w-[100%] h-[3vh] bg-custom-purple-600 border-2 border-black absolute bottom-12 xl:bottom-9"
-        initial={{ y: 645, opacity: 1 }}
+        initial={{ y: 525, opacity: 1 }}
+        // initial={{ y: 645, opacity: 1 }}
       >
-        <div id='rivet'/>
-        <div id='rivet'/>
-        <div id='rivet'/>
-        <div id='rivet'/>
-        {/* <div id='post'/> */}
+        <div id='innerPlatform'>
+          <div id='rivet'/>
+          <div id='rivet'/>
+          <div id='rivet'/>
+          <div id='rivet'/>
+        </div>
+        <div id='base'/>
+        <div id='knuckle'/>
         </motion.div>
     </div>
   );
