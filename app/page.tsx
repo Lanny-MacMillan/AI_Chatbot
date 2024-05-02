@@ -1,13 +1,20 @@
 "use client"
+// import { useState,useRef, useEffect } from'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NavigationMenuAi } from '@/components/ui/nav/nav'
-import AnimatedTextWord from '@/components/animations/AnimatedTextWord'
-import Bounce from '@/components/animations/Bounce'
+import RocketTitle from '@/components/animations/RocketTitle'
 
 export const runtime = 'edge'
 
 export default function Home() {
-  // custom SVG below
+  // const [alarm, setAlarm] = useState<boolean>(false);
+  // const alarmRef = useRef(0)
+
+  // useEffect(() => {
+  //   if (alarmRef.current >= 1) {
+  //     window.location.reload()
+  //   }
+  // },[alarmRef.current])
 
   return (
     <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9] h-screen max-h-screen overflow-hidden' >
@@ -15,36 +22,11 @@ export default function Home() {
       <NavigationMenuAi/>
       <section className='text-zinc-700'>
           <div className="container mx-auto flex flex-col z-10 " >
-            <Bounce/>
-            <div className='flex flex-col z-10'>
-              <AnimatedTextWord text="Transform  Your  Approach  With " />
-              <motion.h1
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 20, opacity: 0}}
-                transition={{ type: "spring", bounce: .7, delay: 2.3 }}
-                id='text'
-                className='text-xl lg:text-5xl text-center font-customBlack'
-              >
-                <motion.span
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: 20, opacity: 0}}
-                  className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text font-customBlack"
-                >Ai-Powered</motion.span> Solutions
-
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0}}
-                  transition={{ ease: "easeInOut", type: "spring", bounce: .7, delay: 3 }}
-                  className="font-customBlack"
-                >.</motion.span>
-              </motion.h1>
-              
+            <RocketTitle
+              // alarmRef={alarmRef}
+            />
           </div>
-        </div>
-        </section>
+      </section>
         </AnimatePresence>
     </div>
   ) 
