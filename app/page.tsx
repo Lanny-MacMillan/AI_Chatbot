@@ -17,7 +17,7 @@ export default function Home() {
   // },[alarmRef.current])
 
   return (
-    <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9] h-screen max-h-screen overflow-hidden' >
+    <div className='bg-gradient-to-b from-[#ffffff] to-[#5be9b9] h-dvh max-h-dvh overflow-hidden' >
     <AnimatePresence>
       <NavigationMenuAi/>
       <section className='text-zinc-700'>
