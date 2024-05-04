@@ -181,7 +181,7 @@
 }
 
 #title{
-	z-index: 100;
+	z-index: 30;
 }
 
 #steel {
@@ -189,8 +189,9 @@
   border-radius: 4px;
   background: linear-gradient(45deg,#999 5%, #fff 10%, #ccc 30%, #ddd 50%,#ccc 70%, #fff 80%,#999 95%);
 	border: 3px solid #0f0f0f30;
-	/* position: relative; */
+	position: absolute;
 	z-index: 100;
+
 }
 
 #innerPlatform{

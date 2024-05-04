@@ -100,7 +100,7 @@ export default function Speech() {
       <div className=" container flex w-screen flex-col items-center justify-around">
       <div className="flex flex-row ">
         <motion.p
-          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center mt-16 mb-16"
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-16 3xl:mt-20 mb-16"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0}}
@@ -109,7 +109,7 @@ export default function Speech() {
           </motion.p>
           
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center mt-16 mb-16 mr-4 ml-4"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack text-center mt-16 3xl:mt-20 mb-16 mr-4 ml-4"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -117,7 +117,7 @@ export default function Speech() {
           > to
           </motion.p>
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-purple-500 inline-block text-transparent bg-clip-text text-5xl font-customBlack  text-center mt-16 mb-16"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-purple-500 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack text-center mt-16 3xl:mt-20 mb-16"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -128,12 +128,18 @@ export default function Speech() {
         <div className="w-full max-w-lg ">
 
         {audio ? (
-          <div className='lg:mt-16'>
+          <div className='mt-24'>
             <Wavesurfer className='lg:mt-16' audio={audio} pause={pause} setPause={setPause} />
           </div>
-          ) : <div className='h-44 lg:mt-16'/>}
+          ) : <div className='h-44 mt-24'/>}
           
-          <form onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio} className='relative rounded-md w-full max-w-lg mt-16 shadow-2xl'>
+          <motion.form
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 50, opacity: 0}}
+            transition={{ delay: 3.5, duration: 1, type: "spring", bounce: .7 }}
+            onSubmit={downloadAudio === "true" ? handleSubmitDownload : handleSubmitAudio}
+            className='relative rounded-md w-full max-w-lg mt-32 shadow-2xl'>
             <Input
               name='message'
               onChange={onChange}
@@ -142,7 +148,6 @@ export default function Speech() {
             <motion.button
               type='submit'
               disabled={isLoading || input.length === 0}
-
               className={ hover ? hoverClass : standardClass }
               whileHover={{ scale: 1.4 }}
               transition={{ tpe: "spring", stiffness: 300 }}
@@ -152,11 +157,31 @@ export default function Speech() {
             >
               <SendHorizontalIcon className={ hover ? 'h-5 w-5 text-custom-purple-500'  : 'h-5 w-5 text-custom-teal-500'}/>
             </motion.button>
-          </form>
+          </motion.form>
           <div className=" flex flex-row justify-between mt-8"> 
+            <motion.div
+              initial={{ y: 0, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 0, opacity: 0}}
+              transition={{ delay: 2, duration: .5, type: "tween" }}>
               <SelectVoice setVoice={setVoice} />
+            </motion.div>
+            <motion.div
+              initial={{ y: 0, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 0, opacity: 0}}
+              transition={{ delay: 2.5, duration: .5, type: "tween" }}              
+            >
               <SelectModel setModel={setModel} />
-              <SelectAudio setDownloadAudio={setDownloadAudio} /> 
+            </motion.div>
+            <motion.div
+              initial={{ y: 0, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 0, opacity: 0}}
+              transition={{ delay: 3, duration: .5, type: "tween" }}            
+            >
+              <SelectAudio setDownloadAudio={setDownloadAudio} />
+            </motion.div>
           </div>         
         </div>
       </div>

@@ -199,7 +199,7 @@ export default function Vision() {
           />
           <motion.button
             onClick={() => void assessImages()}
-            disabled={isLoading}
+            disabled={isLoading || prompt.length === 0}
             className={ hover ? hoverClass : standardClass }
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -231,9 +231,14 @@ export default function Vision() {
     {!audio ? (
       <div className="flex flex-col items-center justify-between ">
         {images.length === 0 ? (
-          <>
+            <>
             <label className="cursor-pointer">
-              <div className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-16  w-64">
+                <motion.div
+                  initial={{ x: 500, opacity: 0 }}
+                  animate={{ rotate: 360, x: 0, opacity: 1 }}
+                  exit={{ x: 0, opacity: 0}}
+                  transition={{ delay: 5, duration: 1.5, type: "tween" }}
+                  className="border-2 border-dashed border-custom-purple-600 rounded-lg p-4 mt-16  w-64">
                 <p className="text-lg text-custom-purple-600">Upload Image(s)</p>
                   <input
                     type="file"
@@ -244,16 +249,26 @@ export default function Vision() {
                     disabled={isLoading}
                 />
                 
-              </div>                  
+              </motion.div>                  
             </label>
             {images.length === 0 && (
               <>
-                <p className="text-xs text-custom-magenta-400 mt-16">
+                  <motion.p
+                    initial={{ y: 500, x: 500, opacity: 0 }}
+                    animate={{y: 0, x: 0, opacity: 1 }}
+                    exit={{  y: 500,x: 100, opacity: 0}}
+                    transition={{ delay: 2, duration: 1, type: "tween" }}
+                    className="text-xs text-custom-magenta-400 mt-16">
                   You need to upload an image to use Vision.
-                </p>
-                <p className="text-xs text-custom-magenta-400 mt-2">
+                </motion.p>
+                  <motion.p
+                    initial={{ y: 500, x: -500, opacity: 0 }}
+                    animate={{ y: 0, x: 0, opacity: 1 }}
+                    exit={{ y: 500, x: -500, opacity: 0}}
+                    transition={{ delay: 3, duration: 1, type: "tween" }}
+                    className="text-xs text-custom-magenta-400 mt-2">
                 Ai does not need your HD images. The response will be much faster if you upload image {'<'} 1mb
-                </p>
+                </motion.p>
                 </>
                 )}
           </>
@@ -294,14 +309,14 @@ export default function Vision() {
       <div className="flex flex-col ">
         <div className="flex flex-row ">
           <motion.p
-            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl lg:text-5xl  font-customBlack  text-center mt-8 mb-8"
+            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl lg:text-5xl font-customBlack text-center mt-8 3xl:mt-20 mb-8"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
             transition={{ type: "spring", bounce: .7 }}
           >Vision</motion.p>
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl lg:text-5xl  font-customBlack  text-center mt-8 mb-8 ml-4"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-5xl lg:text-5xl font-customBlack text-center mt-8 3xl:mt-20 mb-8 ml-4"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -310,9 +325,14 @@ export default function Vision() {
         </div>
 
       </div>
-        <h2 className="text-l font-semibold text-custom-purple-500">
+          <motion.h2
+            initial={{ y: 0, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 0, opacity: 0}}
+            transition={{ delay: 1, duration: .5, type: "tween" }}
+            className="text-l font-semibold text-custom-purple-500">
           Submit up to 2 images for Ai analysis and receive valuable insights!
-        </h2>
+        </motion.h2>
           {images.length != 0 && (
             <div className="flex flex-col rounded-xl overflow-auto mt-16">
               <div className="relative border-2 border-solid border-red-600 rounded-xl">
