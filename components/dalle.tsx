@@ -49,7 +49,7 @@ export default function Dalle3() {
       <div className="container flex flex-col items-center">
         <div className="flex flex-row ">
         <motion.p
-          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-8 mb-8 pb-3"
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack text-center mt-16 3xl:mt-20 mb-8 pb-3"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0}}
@@ -58,7 +58,7 @@ export default function Dalle3() {
           </motion.p>
           
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-8 mb-8 ml-4 ml-4 pb-3"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack text-center mt-16 mb-8 3xl:mt-20 ml-4 ml-4 pb-3"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -66,7 +66,12 @@ export default function Dalle3() {
           > Generation
           </motion.p>
         </div>
-          <div className="flex mt-4 w-full max-w-lg justify-center">
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0}}
+          transition={{ delay: 1.5, duration: .5, type: "tween" }}
+          className="flex mt-4 xl:mt-0 3xl:mt-8 w-full max-w-lg justify-center">
             <form onSubmit={handleDalleSubmit} className='relative rounded-md w-[400px] max-w-lg shadow-2xl'>
               <Input
                 type='text'
@@ -77,7 +82,7 @@ export default function Dalle3() {
                 />
               <motion.button
                 type='submit'
-                disabled={isLoading}
+                disabled={isLoading || prompt.length === 0}
                 className={ hover ? hoverClass : standardClass }
                 whileHover={{ scale: 1.4 }}
                 transition={{ tpe: "spring", stiffness: 300 }}
@@ -88,9 +93,14 @@ export default function Dalle3() {
                 <SendHorizontalIcon className={ hover ? 'h-5 w-5 text-custom-purple-500'  : 'h-5 w-5 text-custom-teal-500'}/>
               </motion.button>
             </form>
-          </div>
+          </motion.div>
           
-          <div className="flex items-center justify-center align-center mt-16">
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0}}
+          transition={{ delay: 1, duration: .5, type: "tween" }}
+          className="flex items-center justify-center align-center mt-16 xl:mt-12 3xl:mt-20">
           {isLoading
             ?
               <BounceLoader
@@ -102,7 +112,7 @@ export default function Dalle3() {
               height={400}
               alt={dalleResult} />
               }
-          </div>
+          </motion.div>
 
         </div>
     </>

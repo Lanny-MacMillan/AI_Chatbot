@@ -38,7 +38,7 @@ export default function Chat() {
     <div className="container flex flex-col items-center justify-center  ">
       <div className="flex flex-row ">
         <motion.p
-          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-8 mb-8 pb-3"
+          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack text-center mt-8 2xl:mt-16 3xl:mt-20 mb-8 pb-3"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0}}
@@ -47,7 +47,7 @@ export default function Chat() {
           </motion.p>
           
           <motion.p
-            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-8 mb-8 ml-4 ml-4 pb-3"
+            className="bg-gradient-to-r from-custom-magenta-300 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-4xl lg:text-5xl font-customBlack  text-center mt-8  3xl:mt-20 mb-8 ml-4 ml-4 pb-3"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 20, opacity: 0}}
@@ -55,7 +55,12 @@ export default function Chat() {
           > Generation
           </motion.p>
         </div>
-        <div className="w-full max-w-lg">
+      <motion.div
+        initial={{ y: 0, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 0, opacity: 0}}
+        transition={{ delay: 1.5, duration: 1, type: "tween" }}
+        className="w-full max-w-lg">
           <div
             className='lg:h-[60vh] h-[70vh] whitespace-nowrap rounded-md overflow-auto p-4 bg-gradient-to-t from-mauve3 to-transparent'
             ref={ref}
@@ -108,17 +113,24 @@ export default function Chat() {
           </div>
 
 
-        </div>
-        <form onSubmit={onSubmit} className='relative rounded-md w-full max-w-lg lg:mt-4 shadow-2xl'>
-            <Input
-              name='message'
-              value={input}
-              onChange={handleInputChange}
-              placeholder='Ask me anything...'
-              />
+      </motion.div>
+      
+      <motion.form
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 50, opacity: 0}}
+        transition={{ delay: 1, duration: .5, type: "tween" }}
+        onSubmit={onSubmit}
+        className='relative rounded-md w-full max-w-lg lg:mt-4 shadow-2xl'>
+        <Input
+          name='message'
+          value={input}
+          onChange={handleInputChange}
+          placeholder='Ask me anything...'
+          />
         <motion.button
           type='submit'
-          disabled={isLoading}
+          disabled={isLoading || input.length === 0}
           className={ hover ? hoverClass : standardClass }
           whileHover={{ scale: 1.4 }}
           transition={{ tpe: "spring", stiffness: 300 }}
@@ -128,7 +140,7 @@ export default function Chat() {
           >
               <SendHorizontalIcon className={ hover ? 'h-5 w-5 text-custom-purple-500'  : 'h-5 w-5 text-custom-teal-500'}/>
             </motion.button>
-          </form>
+          </motion.form>
       </div>
   )
 }
