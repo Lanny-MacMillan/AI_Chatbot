@@ -1,10 +1,6 @@
 "use client"
-
 import * as React from "react"
-import Link from "next/link"
-
 import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,27 +12,27 @@ import {
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Text Generation",
+    title: "OpenAI Chat",
     href: "/text-generation",
     description:
-      "OpenAI's text generation models have been trained to understand natural language, code, and images.",
+      "Have a conversation or find answers with OpenAI's GPT-4.",
   },
   {
-    title: "Image Generator",
+    title: "Dalle-3 Image Generator",
     href: "/image-generator",
     description:
-      "Generate images with DALL·E from OpenAI",
+      "Generate images with Dalle·3 from OpenAI",
   },
   {
-    title: "Open AI Vision",
+    title: "OpenAI Vision",
     href: "/vision",
     description:
-      "Vision is best at answering general questions about what is present in the images.",
+      "Ask OpenAI's Vision to analyze or give insights on images",
   },
   {
     title: "Text-to-Speech",
     href: "/text-to-speech",
-    description: "Turn text into lifelike spoken audio.",
+    description: "Use OpenAI's TTS-1 to turn text into life like spoken audio",
   },
 ]
 
@@ -57,34 +53,42 @@ export function NavigationMenuAi() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+            <ul className="grid gap-3 p-5 md:w-[400px] lg:w-[500px] lg:grid-cols-[1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                    className=" select-none flex-col  rounded-md bg-gradient-to-b from-muted/50 to-mutedno-underline outline-none focus:shadow-md"
                     href="/"
                   >
-                    <div className="mb-2 mt-4 text-lg font-medium">
+                        <div
+                          style={{
+                            borderWidth: 0,
+                            borderBottom: '3px solid',
+                            borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
+                          }}
+                          
+                          className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text mb-6 mt-1 text-lg font-customBlack ">
                       Ai Toolbox
                     </div>
-                    <p className="text-sm leading-tight text-muted-foreground">
-                      Beautiful and simply designed components built with Radix UI and
-                      Tailwind CSS for this AI Toolbox.
+                    <p className="text-sm leading-tight text-muted-foreground  font-customSemiBold ">
+                          The AI Toolbox harnesses the power of four cutting-edge AI models in a single, user-friendly platform to cater to all your needs efficiently.
+                          <br/>
+                          Enjoy seamless integration of cutting-edge technologies for diverse tasks such as speech synthesis, image recognition, advanced language processing, and creative image generation in one unified platform.
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/introduction" title="Introduction">
+              {/* <ListItem href="/introduction" title="Introduction">
                 Get introduced to OpenAi and how to use it to you're advantage.
               </ListItem>
-              <ListItem href="/documentation" title="Documentation">
+              <ListItem href="/documentation" target="_blank" title="Documentation">
                 Take a look at the OpenAI Documention.
-              </ListItem>
+              </ListItem> */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Ai Tools</NavigationMenuTrigger>
+          <NavigationMenuTrigger>The Toolbox</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -121,8 +125,15 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div
+            style={{
+              borderWidth: 0,
+              borderBottom: '3px solid',
+              borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
+            }}
+            
+            className=" text-base font-customBlack leading-none mt-2 bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text">{title}</div>
+          <p className="line-clamp-2 text-sm font-customSemiBold leading-snug text-muted-foreground">
             {children}
           </p>
         </a>
