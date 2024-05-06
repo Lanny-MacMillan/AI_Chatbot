@@ -51,7 +51,7 @@ export function NavigationMenuAi() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuTrigger>About</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid gap-3 p-5 md:w-[400px] lg:w-[500px] lg:grid-cols-[1fr]">
               <li className="row-span-3">
@@ -83,7 +83,7 @@ export function NavigationMenuAi() {
               </ListItem>
               <ListItem href="/documentation" target="_blank" title="Documentation">
                 Take a look at the OpenAI Documention.
-              </ListItem> */}
+                 </ListItem> */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
