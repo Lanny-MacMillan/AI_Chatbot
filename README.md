@@ -6,7 +6,6 @@
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 </div>
 
@@ -35,7 +34,7 @@ By following these guidelines, you can input prompts to AI models in a way that 
 
 <div align="center">
   
-## AI Tech Info
+## AI Model Info
 
 </div>
 
@@ -56,7 +55,7 @@ GPT-4 represents a significant advancement in natural language processing techno
 
 <br/>
 
-## OpenAI Image Generator - DallE-3
+## Image Generator - DALLE-3
 
 DALL-E 3 is the third version of the DALL-E model developed by OpenAI. It is an extension of the original DALL-E model, which was trained to generate images from textual descriptions. DALL-E 3 builds upon this capability and introduces several advancements in image generation and understanding.
 
@@ -72,7 +71,7 @@ DALL-E 3 represents a significant advancement in AI-generated image synthesis, o
 
 <br/>
 
-## OpenAI Image Analysis - Vision
+## Image Analysis - VISION
 
 
 OpenAI Vision is a set of cutting-edge computer vision models and tools developed by OpenAI. These models leverage deep learning techniques to understand and interpret visual information from images and videos, enabling a wide range of applications in various domains.
