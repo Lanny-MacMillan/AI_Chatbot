@@ -9,8 +9,13 @@
 
 </div>
 
+<br/>
 
-## Manual Prompts
+<div align="center">
+  
+# Manual Prompts:
+
+</div>
 
 Here's a brief explanation on how to best manually input prompts to an AI model:
 
@@ -37,11 +42,9 @@ By following these guidelines, you can input prompts to AI models in a way that 
 
 <div align="center">
   
-## AI Model Info
+# AI Model Info:
 
 </div>
-
-<br/>
 
 ## Chat/Text Generation - GPT-4
 
