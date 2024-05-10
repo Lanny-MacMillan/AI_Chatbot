@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import AnimatedTextWord from './AnimatedTextWord';
 
@@ -14,7 +14,6 @@ export default function Bounce() {
   const [dropComplete, setDropComplete] = useState<any>(false);
   const [swipeAwayAnimStart, setSwipeAwayAnimStart] = useState<any>(false);
 
-  const controls = useAnimation();
   let tl = gsap.timeline();
 
   const returnTextAnimation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -127,9 +126,10 @@ export default function Bounce() {
 
   const variants = {
     drop: {
-      y: -800,
+      y: 0,
     },
     start: () => ({
+      y: 0,
       rotate: [1, -1.4, 0],
       transition: {
         delay: getRandomDelay(),
@@ -138,6 +138,7 @@ export default function Bounce() {
       },
     }),
     reset: {
+      y: 0,
       rotate: 0,
     },
   };
@@ -151,7 +152,7 @@ export default function Bounce() {
 
   const timeoutMovement = setTimeout(() => {
     setMovementComplete(true);
-  }, 3500);
+  }, 4000);
 
   return (
     <div id="title" className="relative z-100 text-center">
@@ -166,7 +167,7 @@ export default function Bounce() {
             opacity: [0, 1, 1],
           }}
           exit={{ y: 150, opacity: 0 }}
-          transition={{ delay: 3, duration: 0.75, type: 'tween' }}
+          transition={{ delay: 3.5, duration: 0.75, type: 'tween' }}
           onAnimationComplete={() => timeoutMovement}
           onClick={swipeAwayAnimStart ? returnTextAnimation : () => {}}
           className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-7xl font-customBlack text-center mt-16 xl:mt-22 2xl:mt-40 z-100 mb-0 pb-0"
@@ -175,11 +176,11 @@ export default function Bounce() {
         </motion.h1>
         <div className="flex justify-center align-center ">
           <motion.div
-            // ref={boxRef}
+            initial={{ y: -500 }}
             variants={variants}
             animate={dropAnim()}
             style={{ ...getRandomTransformOrigin() }}
-            exit={{ y: 20, opacity: 0 }}
+            exit={{ y: 20 }}
             onAnimationComplete={() => {
               setAnimStart(true);
               setDropComplete(true);
@@ -203,7 +204,7 @@ export default function Bounce() {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 20, opacity: 0 }}
-          transition={{ type: 'spring', bounce: 0.7, delay: 6.2 }}
+          transition={{ type: 'spring', bounce: 0.7, delay: 6.8 }}
           id="text"
           className="text-xl lg:text-5xl text-center font-customBlack"
         >
@@ -226,7 +227,7 @@ export default function Bounce() {
               ease: 'easeInOut',
               type: 'spring',
               bounce: 0.7,
-              delay: 7.1,
+              delay: 7.6,
             }}
             className="font-customBlack"
           >

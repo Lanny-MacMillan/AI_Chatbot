@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const AnimatedTextWord = ({ text }: any) => {
-  // This will split the text into an array of word
   const words = text.split(' ');
 
   // Variants for Container of words.
@@ -10,7 +9,7 @@ const AnimatedTextWord = ({ text }: any) => {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 5 * i },
+      transition: { staggerChildren: 0.12, delayChildren: 5.5 * i },
     }),
   };
 
