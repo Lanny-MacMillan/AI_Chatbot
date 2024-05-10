@@ -42,7 +42,8 @@ export function NavigationMenuAi() {
       <div
         style={{
           borderWidth: 0,
-          borderBottom: '4px solid',
+          borderBottom: '5px solid',
+          // borderColor: '#3f3f46',
           borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
           zIndex: '100'
         }}
