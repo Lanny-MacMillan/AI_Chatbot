@@ -40,25 +40,17 @@ export function NavigationMenuAi() {
         style={{
           borderWidth: 0,
           borderBottom: '5px solid',
-          // borderColor: '#3f3f46',
           borderImage: 'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
           zIndex: '100',
         }}
-        className="bg-custom-purple-200 p-2 z-50 flex flex-row"
+        className="bg-custom-purple-200 p-2 z-50 flex justify-between flex-row"
       >
-        <object
-          className="flex h-7 self-center mx-4"
-          type="image/svg+xml"
-          data="/smallToolbox.svg"
-        >
-          small-logo-svg
-        </object>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger>About</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-3 p-5 md:w-[400px] lg:w-[500px] lg:grid-cols-[1fr]">
+                <ul className="grid gap-3 p-5 w-[350px] md:w-[400px] lg:w-[500px] lg:grid-cols-[1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
@@ -89,19 +81,13 @@ export function NavigationMenuAi() {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  {/* <ListItem href="/introduction" title="Introduction">
-                Get introduced to OpenAi and how to use it to you're advantage.
-              </ListItem>
-              <ListItem href="/documentation" target="_blank" title="Documentation">
-                Take a look at the OpenAI Documention.
-                 </ListItem> */}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>The Toolbox</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                <ul className="grid w-[350px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   {components.map((component) => (
                     <ListItem
                       key={component.title}
@@ -116,6 +102,13 @@ export function NavigationMenuAi() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <object
+          className="flex h-7 self-center flex-end mx-4"
+          type="image/svg+xml"
+          data="/smallToolbox.svg"
+        >
+          small-logo-svg
+        </object>
       </div>
     </>
   );
