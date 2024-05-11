@@ -67,7 +67,7 @@ export default function Chat() {
         className="w-full max-w-lg"
       >
         <div
-          className="lg:h-[60vh] h-[70vh] whitespace-nowrap rounded-md overflow-auto p-4 bg-gradient-to-t from-mauve3 to-transparent"
+          className="lg:h-[60vh] h-[60vh] whitespace-nowrap rounded-md overflow-auto p-4 bg-gradient-to-t from-mauve3 to-transparent"
           ref={ref}
         >
           {messages.map((m) =>
@@ -80,7 +80,13 @@ export default function Chat() {
                 {m.role === 'user' && (
                   <div className="mb-6 flex gap-3">
                     <Avatar>
-                      <AvatarImage src="" />
+                      <object
+                        className="aspect-square h-full w-full"
+                        type="image/svg+xml"
+                        data="/smallToolbox.svg"
+                      >
+                        small-logo-svg
+                      </object>
                       <AvatarFallback className="text-sm">U</AvatarFallback>
                     </Avatar>
                     <div className="mt-1.5">
@@ -112,7 +118,6 @@ export default function Chat() {
           )}
         </div>
       </motion.div>
-
       <motion.form
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
