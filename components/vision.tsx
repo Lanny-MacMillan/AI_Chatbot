@@ -264,7 +264,7 @@ export default function Vision() {
                     transition={{ delay: 2, duration: 1, type: 'tween' }}
                     className="text-xs text-custom-magenta-400 mt-16"
                   >
-                    You need to upload an image to use Vision.
+                    Upload an image to use start using Vision.
                   </motion.p>
                   <motion.p
                     initial={{ y: 500, x: -500, opacity: 0 }}
@@ -273,8 +273,8 @@ export default function Vision() {
                     transition={{ delay: 3, duration: 1, type: 'tween' }}
                     className="text-xs text-custom-magenta-400 mt-2"
                   >
-                    Ai does not need your HD images. The response will be much faster
-                    if you upload image {'<'} 1mb
+                    Vision does not need your high quality images. The response will
+                    be much faster if you upload image {'<'} 1mb
                   </motion.p>
                 </>
               )}
