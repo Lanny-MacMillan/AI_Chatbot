@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState, useRef} from "react";
-import WaveSurfer from "wavesurfer.js";
+import React, { useEffect, useState, useRef } from 'react';
+import WaveSurfer from 'wavesurfer.js';
 import {
   BsFillStopFill,
   BsFillPlayFill,
   BsFillPauseFill,
   BsSkipForward,
   BsSkipBackward,
-} from "react-icons/bs";
+} from 'react-icons/bs';
 
-const Wavesurfer = ({audio, pause, setPause}: any) => {
+const Wavesurfer = ({ audio, pause, setPause }: any) => {
   const waveformRef = useRef(null);
   let wavesurfer: any;
-  
+
   useEffect(() => {
     wavesurfer = WaveSurfer.create({
       container: '#waveform',
-      waveColor: "#6e56cf",
-      progressColor: "#141c3a30",
+      waveColor: '#6e56cf',
+      progressColor: '#141c3a30',
       url: audio,
       dragToSeek: true,
-      width: "50vw",
+      width: '50vw',
       hideScrollbar: true,
       normalize: true,
       barGap: 1,
@@ -31,12 +31,12 @@ const Wavesurfer = ({audio, pause, setPause}: any) => {
       barWidth: 5,
     });
 
-    wavesurfer.on("finish", () => {
-      console.log("audio complete");
+    wavesurfer.on('finish', () => {
+      console.log('audio complete');
     });
 
-    wavesurfer.on("ready", () => {
-      console.log("Waveform is ready");
+    wavesurfer.on('ready', () => {
+      console.log('Waveform is ready');
     });
     return () => {
       wavesurfer.destroy();
@@ -68,12 +68,12 @@ const Wavesurfer = ({audio, pause, setPause}: any) => {
   return (
     <div className="container">
       <div className="sub-container">
-        <div ref={waveformRef}  id="waveform" className="wavesurfer-container" />
+        <div ref={waveformRef} id="waveform" className="wavesurfer-container" />
         <div className="wavesurfer-controls">
           <button onClick={handleSkipBack}>
             <BsSkipBackward />
           </button>
-          
+
           <button onClick={handlePause}>
             <BsFillPlayFill />
           </button>

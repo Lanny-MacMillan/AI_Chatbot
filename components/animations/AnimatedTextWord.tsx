@@ -1,17 +1,15 @@
-import React from "react";
-import { motion } from "framer-motion";
-
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const AnimatedTextWord = ({ text }: any) => {
-  // This will split the text into an array of word 
-  const words = text.split(" ");
+  const words = text.split(' ');
 
   // Variants for Container of words.
   const container = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: {  staggerChildren: .12, delayChildren: 1 * i },
+      transition: { staggerChildren: 0.12, delayChildren: 5.5 * i },
     }),
   };
 
@@ -22,7 +20,7 @@ const AnimatedTextWord = ({ text }: any) => {
       opacity: 1,
       x: 0,
       transition: {
-        type: "spring",
+        type: 'spring',
         damping: 12,
         stiffness: 100,
       },
@@ -31,7 +29,7 @@ const AnimatedTextWord = ({ text }: any) => {
       opacity: 0,
       x: 20,
       transition: {
-        type: "spring",
+        type: 'spring',
         damping: 12,
         stiffness: 100,
       },
@@ -40,7 +38,7 @@ const AnimatedTextWord = ({ text }: any) => {
 
   return (
     <motion.div
-      style={{ overflow: "hidden", display: "flex", fontSize: "2rem" }}
+      style={{ overflow: 'hidden', display: 'flex', fontSize: '2rem' }}
       variants={container}
       initial="hidden"
       animate="visible"
@@ -49,8 +47,8 @@ const AnimatedTextWord = ({ text }: any) => {
         <motion.span
           variants={child}
           key={index}
-          style={{ marginRight: "5px" }}
-          className="text-xl lg:text-5xl text-center font-customBlack mt-40"
+          style={{ marginRight: '5px' }}
+          className="text-xl lg:text-5xl text-center font-customBlack mt-40 z-0"
         >
           {word}
         </motion.span>
