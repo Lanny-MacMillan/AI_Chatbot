@@ -7,7 +7,7 @@ export default function Introduction() {
   return (
     <div
       id="heightContainer"
-      className="bg-gradient-to-b from-[#ffffff] to-[#5be9b9] h-dvh max-h-dvh overflow-hidden"
+      className="bg-gradient-to-b from-[#ffffff] to-[#5be9b9] overflow-hidden"
     >
       <NavigationMenuAi />
       <Chat />
