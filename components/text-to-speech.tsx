@@ -173,7 +173,7 @@ export default function Speech() {
               />
             </motion.button>
           </motion.form>
-          <div className=" flex flex-row justify-between mt-8 mb-4">
+          <div className=" flex flex-row justify-between mt-8 mb-8">
             <motion.div
               initial={{ y: 0, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
