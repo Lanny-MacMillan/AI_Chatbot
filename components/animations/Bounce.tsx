@@ -26,6 +26,11 @@ export default function Bounce() {
       return;
     }
 
+    console.log('env_vars:AUTH0_SECRET', process.env.AUTH0_SECRET);
+    console.log('env_vars:AUTH0_BASE_URL', process.env.AUTH0_BASE_URL);
+    console.log('env_vars:AUTH0_ISSUER_BASE_URL', process.env.AUTH0_ISSUER_BASE_URL);
+    console.log('env_vars:AUTH0_CLIENT_ID', process.env.AUTH0_CLIENT_ID);
+    console.log('env_vars:AUTH0_CLIENT_SECRET', process.env.AUTH0_CLIENT_SECRET);
     //leftExitRef text back to original position
     gsap.to([leftExitRef.current], {
       x: 0,
