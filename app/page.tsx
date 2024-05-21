@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { NavigationMenuAi } from '@/components/ui/nav/nav';
 import Bounce from '@/components/animations/Bounce';
 
@@ -15,6 +15,7 @@ export default function Home() {
     };
 
     handleResize();
+
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);

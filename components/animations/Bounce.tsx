@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import AnimatedTextWord from './AnimatedTextWord';
@@ -13,6 +14,8 @@ export default function Bounce() {
   const [movementComplete, setMovementComplete] = useState<any>(false);
   const [dropComplete, setDropComplete] = useState<any>(false);
   const [swipeAwayAnimStart, setSwipeAwayAnimStart] = useState<any>(false);
+
+  const { user } = useUser();
 
   let tl = gsap.timeline();
 
@@ -235,6 +238,29 @@ export default function Bounce() {
           </motion.span>
         </motion.h1>
       </div>
+      {user ? null : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            ease: 'easeInOut',
+            type: 'spring',
+            bounce: 0.7,
+            delay: 8.1,
+          }}
+          className="text-sm lg:text-2xl text-center font-customBlack mt-8"
+        >
+          <p>Login to unlock the Toolbox</p>
+          <br />
+          <a
+            className="text-white bg-custom-purple-300 border-4 border-custom-magenta-200 hover:bg-custom-purple-400 hover:border-custom-magenta-300 focus:ring-4 focus:ring-custom-purple-100 font-customBlack rounded-lg text-sm px-7 py-3.5 me-2 mb-2 dark:bg-custom-purple-100 dark:hover:bg-custom-purple-200"
+            href="/api/auth/login"
+          >
+            Log In
+          </a>
+        </motion.div>
+      )}
     </div>
   );
 }
