@@ -20,6 +20,11 @@ export default function Home() {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  console.log('env_vars:AUTH0_SECRET', process.env.AUTH0_SECRET);
+  console.log('env_vars:AUTH0_BASE_URL', process.env.AUTH0_BASE_URL);
+  console.log('env_vars:AUTH0_ISSUER_BASE_URL', process.env.AUTH0_ISSUER_BASE_URL);
+  console.log('env_vars:AUTH0_CLIENT_ID', process.env.AUTH0_CLIENT_ID);
+  console.log('env_vars:AUTH0_CLIENT_SECRET', process.env.AUTH0_CLIENT_SECRET);
 
   return (
     <div
