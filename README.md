@@ -1,7 +1,8 @@
 <div align="center">
   
 # AI Toolbox
- 
+ <img src="https://github.com/Lanny-MacMillan/AI_Chatbot/assets/102826450/1aa0a85e-257b-4cd8-84a8-1c9ef28f6e23" alt="drawing" width="200"/>
+
 ## Tech Stack/Language
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
