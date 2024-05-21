@@ -1,6 +1,7 @@
 'use client';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -32,8 +33,10 @@ const components: { title: string; href: string; description: string }[] = [
     description: "Use OpenAI's TTS-1 to turn text into life like spoken audio",
   },
 ];
-
 export function NavigationMenuAi() {
+  const { user, error, isLoading } = useUser();
+  if (error) return <div>{error.message}</div>;
+
   return (
     <>
       <div
@@ -47,6 +50,56 @@ export function NavigationMenuAi() {
       >
         <NavigationMenu>
           <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Account</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-5 w-[150px] md:w-[150px] lg:w-[150px] ">
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      {user ? (
+                        <a
+                          className=" select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-mutedno-underline outline-none focus:shadow-md"
+                          href="/api/auth/logout"
+                        >
+                          <div
+                            style={{
+                              borderWidth: 0,
+                              borderBottom: '3px solid',
+                              borderImage:
+                                'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
+                            }}
+                            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-lg font-customBlack flex justify-center align-center self-center "
+                          >
+                            Logout
+                          </div>
+                          <p className="flex justify-center mt-8">
+                            <small> {user?.nickname}</small>
+                          </p>
+                        </a>
+                      ) : (
+                        <a
+                          className=" select-none flex-col rounded-md bg-gradient-to-b from-muted/50 to-mutedno-underline outline-none focus:shadow-md"
+                          href="/api/auth/login"
+                        >
+                          <div
+                            style={{
+                              borderWidth: 0,
+                              borderBottom: '3px solid',
+                              borderImage:
+                                'linear-gradient(to right,#7427f7,#5be9b9, #bc3ed3) 30',
+                            }}
+                            className="bg-gradient-to-r from-custom-purple-600 to-custom-magenta-300 inline-block text-transparent bg-clip-text text-lg font-customBlack flex justify-center align-center self-center "
+                          >
+                            Login
+                          </div>
+                        </a>
+                      )}
+                    </NavigationMenuLink>
+                  </li>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
             <NavigationMenuItem>
               <NavigationMenuTrigger>About</NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -84,31 +137,35 @@ export function NavigationMenuAi() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>The Toolbox</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[350px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {components.map((component) => (
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
-                    >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            {user && (
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>The Toolbox</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[350px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                    {components.map((component) => (
+                      <ListItem
+                        key={component.title}
+                        title={component.title}
+                        href={component.href}
+                      >
+                        {component.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
-        <object
-          className="flex h-7 self-center flex-end mx-4"
-          type="image/svg+xml"
-          data="/smallToolbox.svg"
-        >
-          small-logo-svg
-        </object>
+        <div className="flex flex-row">
+          <object
+            className="flex h-7 self-center flex-end mx-4"
+            type="image/svg+xml"
+            data="/smallToolbox.svg"
+          >
+            small-logo-svg
+          </object>
+        </div>
       </div>
     </>
   );
