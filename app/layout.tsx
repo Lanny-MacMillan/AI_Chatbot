@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const inter = Inter({ subsets: ['latin'] });
-const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-55XB6PC1CC';
+const GA_TRACKING_ID = 'G-55XB6PC1CC';
 
 export default function RootLayout({
   children,
